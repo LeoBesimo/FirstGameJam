@@ -30,9 +30,11 @@ void Core::BaseApplication::run()
 		}
 
 		update(1);
-		m_Window->clear(255,255,255,255);
+		m_Window->clear(0,0,0, 255);
 
 		m_Window->rect(100, 100, 100, 100);
+
+		m_Window->line(400, 500, 600, 300);
 
 		m_Window->display();
 	}
