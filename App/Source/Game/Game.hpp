@@ -2,12 +2,12 @@
 
 #include <Core/Core.h>
 
-class Game 
-	: public Core::BaseApplication
+class Game
+    : public Core::BaseApplication
 {
 public:
-	Game();
-	~Game();
+    Game();
+    ~Game();
 
-	void update(float dt) override;
+    void update(float dt) override;
 };
