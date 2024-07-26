@@ -12,11 +12,12 @@ namespace Core
 		BaseApplication();
 		~BaseApplication();
 
-		void run();
+		virtual void update(float dt);
+		virtual void run();
 
 	private:
 		
-		Window m_Window;
+		std::unique_ptr<Window> m_Window;
 
 	};
 }

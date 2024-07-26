@@ -1,11 +1,16 @@
-#include "Core/Core.h"
+//#include "Core/Core.h"
+//
+//#include <SFML/Graphics.hpp>
+//#include <SFML/OpenGL.hpp>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
+#include "Game/Game.hpp"
 
 int main()
 {
-        sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+
+    Game game;
+    game.run();
+        /*sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
         sf::CircleShape shape(100.f);
         shape.setFillColor(sf::Color::Green);
 
@@ -19,7 +24,7 @@ int main()
             window.clear();
             window.draw(shape);
             window.display();
-        }
+        }*/
 
 	Core::PrintHelloWorld();
 

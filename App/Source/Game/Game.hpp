@@ -3,7 +3,12 @@
 #include <Core/Core.h>
 
 class Game 
-	: Core::BaseApplication
+	: public Core::BaseApplication
 {
+public:
+	Game();
+	~Game();
 
+	void update(float dt) override;
+	void run();
 };

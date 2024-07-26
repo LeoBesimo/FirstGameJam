@@ -21,7 +21,7 @@ std::vector<sf::Event> Core::Window::getEvents()
 	sf::Event event;
 	while (m_Window.pollEvent(event))
 	{
-		events.push_back(event)
+		events.push_back(event);
 	}
 
 	return events;
