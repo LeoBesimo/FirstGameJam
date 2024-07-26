@@ -21,8 +21,12 @@ namespace Core
 		void circle(float x, float y, float radius);
 
 		void fill(int r = 0, int g = 0, int b = 0, int alpha = 1);
+		void noFill();
+		void stroke(int r = 0, int g = 0, int b = 0, int alpha = 1);
+		void noStroke();
 
-		void clear(int r = 255, int g = 255, int b = 255, int alpha = 1);
+		void clear();
+		void setClearColor(int r = 255, int g = 255, int b = 255, int alpha = 1);
 		void display();
 		void close();
 
