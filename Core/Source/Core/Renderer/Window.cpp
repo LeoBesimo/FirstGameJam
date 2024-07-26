@@ -39,12 +39,10 @@ void Core::Window::rect(float x, float y, float width, float height)
 
 void Core::Window::line(float x1, float y1, float x2, float y2)
 {
-	sf::Vertex line[2] = {
-		sf::Vertex(sf::Vector2f(x1, y1), m_StrokeColor),
-		sf::Vertex(sf::Vector2f(x2, y2), m_StrokeColor)
-	};
+	m_Line[0] = sf::Vertex(sf::Vector2f(x1, y1), m_StrokeColor);
+	m_Line[1] = sf::Vertex(sf::Vector2f(x2, y2), m_StrokeColor);
 
-	m_Window.draw(line, 2, sf::Lines);
+	m_Window.draw(m_Line, 2, sf::Lines);
 }
 
 void Core::Window::circle(float x, float y, float radius)
