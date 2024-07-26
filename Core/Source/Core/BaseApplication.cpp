@@ -10,7 +10,7 @@ Core::BaseApplication::~BaseApplication()
 
 void Core::BaseApplication::update(float dt)
 {
-
+	std::cout << "From Base Class" << "\n";
 }
 
 void Core::BaseApplication::run()
@@ -25,8 +25,15 @@ void Core::BaseApplication::run()
 		{
 			if (event.type == sf::Event::Closed)
 			{
-
+				m_Window->close();
 			}
 		}
+
+		update(1);
+		m_Window->clear(255,255,255,255);
+
+		m_Window->rect(100, 100, 100, 100);
+
+		m_Window->display();
 	}
 }

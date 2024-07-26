@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <iostream>
 
 #include "Renderer/Window.hpp"
 
@@ -13,7 +14,7 @@ namespace Core
 		~BaseApplication();
 
 		virtual void update(float dt);
-		virtual void run();
+		void run();
 
 	private:
 		

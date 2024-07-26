@@ -10,8 +10,6 @@ Game::~Game()
 
 void Game::update(float dt)
 {
-}
-
-void Game::run()
-{
+	BaseApplication::update(dt);
+	std::cout << "From Derived Class\n";
 }

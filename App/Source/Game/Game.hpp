@@ -10,5 +10,4 @@ public:
 	~Game();
 
 	void update(float dt) override;
-	void run();
 };
