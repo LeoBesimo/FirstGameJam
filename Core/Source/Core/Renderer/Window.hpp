@@ -8,7 +8,7 @@ namespace Core
 	class Window 
 	{
 	public:
-		Window(unsigned int width, unsigned int height, std::string title);
+		Window(unsigned int width = 100, unsigned int height = 100, std::string title = "Window");
 		~Window();
 
 		bool isOpen();
