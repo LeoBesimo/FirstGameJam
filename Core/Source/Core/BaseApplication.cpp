@@ -8,6 +8,25 @@ Core::BaseApplication::~BaseApplication()
 {
 }
 
+void Core::BaseApplication::update(float dt)
+{
+
+}
+
 void Core::BaseApplication::run()
 {
+	m_Window = std::unique_ptr<Core::Window>(new Core::Window(1000, 1000, "Test"));
+
+	while (m_Window->isOpen())
+	{
+		std::vector<sf::Event> events = m_Window->getEvents();
+
+		for (sf::Event event : events)
+		{
+			if (event.type == sf::Event::Closed)
+			{
+
+			}
+		}
+	}
 }
