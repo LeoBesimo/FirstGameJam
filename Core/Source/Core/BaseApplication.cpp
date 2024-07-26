@@ -10,12 +10,15 @@ Core::BaseApplication::~BaseApplication()
 
 void Core::BaseApplication::update(float dt)
 {
-	std::cout << "From Base Class" << "\n";
+	std::cout << dt << "\n";
 }
 
 void Core::BaseApplication::run()
 {
 	m_Window = std::unique_ptr<Core::Window>(new Core::Window(1000, 1000, "Test"));
+
+	sf::Clock deltaClock;
+	float deltaTime = 1.f;
 
 	while (m_Window->isOpen())
 	{
@@ -29,7 +32,7 @@ void Core::BaseApplication::run()
 			}
 		}
 
-		update(1);
+		update(deltaTime);
 		m_Window->setClearColor();
 
 		m_Window->clear();
@@ -39,5 +42,7 @@ void Core::BaseApplication::run()
 		m_Window->line(400, 500, 600, 300);
 
 		m_Window->display();
+
+		deltaTime = deltaClock.restart().asSeconds();
 	}
 }
