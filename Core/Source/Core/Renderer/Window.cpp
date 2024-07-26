@@ -26,3 +26,11 @@ std::vector<sf::Event> Core::Window::getEvents()
 
 	return events;
 }
+
+void Core::Window::rect(float positionX, float positionY, float width, float height)
+{
+	m_RectangleShape.setPosition(sf::Vector2f(positionX, positionY));
+	m_RectangleShape.setSize(sf::Vector2f(width, height));
+
+	m_Window.draw(m_RectangleShape);
+}

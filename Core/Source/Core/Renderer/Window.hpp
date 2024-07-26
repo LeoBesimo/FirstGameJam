@@ -16,6 +16,8 @@ namespace Core
 
 		std::vector<sf::Event> getEvents();
 
+		void rect(float positionX, float positionY, float width, float height);
+
 	private:
 		unsigned int m_Width, m_Height;
 
