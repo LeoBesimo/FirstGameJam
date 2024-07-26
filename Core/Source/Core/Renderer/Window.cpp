@@ -47,7 +47,7 @@ void Core::Window::line(float x1, float y1, float x2, float y2)
 
 void Core::Window::clear(int r, int g, int b, int alpha)
 {
-	sf::Color clearColor(r, g, b, alpha)
+	sf::Color clearColor(r, g, b, alpha);
 	m_Window.clear(clearColor);
 }
 
