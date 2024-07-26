@@ -2,6 +2,7 @@
 
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 namespace Core 
 {
@@ -13,7 +14,7 @@ namespace Core
 
 		bool isOpen();
 
-
+		std::vector<sf::Event> getEvents();
 
 	private:
 		unsigned int m_Width, m_Height;
