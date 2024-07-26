@@ -20,13 +20,13 @@ namespace Core
 		void line(float x1, float y1, float x2, float y2);
 		void circle(float x, float y, float radius);
 
-		void fill(int r = 0, int g = 0, int b = 0, int alpha = 1);
+		void fill(int r = 0, int g = 0, int b = 0, int alpha = 255);
 		void noFill();
-		void stroke(int r = 0, int g = 0, int b = 0, int alpha = 1);
+		void stroke(int r = 0, int g = 0, int b = 0, int alpha = 255);
 		void noStroke();
 
 		void clear();
-		void setClearColor(int r = 255, int g = 255, int b = 255, int alpha = 1);
+		void setClearColor(int r = 255, int g = 255, int b = 255, int alpha = 255);
 		void display();
 		void close();
 

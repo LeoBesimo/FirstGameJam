@@ -30,6 +30,8 @@ void Core::BaseApplication::run()
 		}
 
 		update(1);
+		m_Window->setClearColor();
+
 		m_Window->clear();
 
 		m_Window->rect(100, 100, 100, 100);
