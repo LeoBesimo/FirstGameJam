@@ -13,6 +13,10 @@ void Core::BaseApplication::update(float dt)
 	std::cout << dt << "\n";
 }
 
+void Core::BaseApplication::render()
+{
+}
+
 void Core::BaseApplication::run()
 {
 	m_Window = std::unique_ptr<Core::Window>(new Core::Window(1000, 1000, "Test"));
@@ -32,14 +36,12 @@ void Core::BaseApplication::run()
 			}
 		}
 
-		update(deltaTime);
 		m_Window->setClearColor();
 
 		m_Window->clear();
 
-		m_Window->rect(100, 100, 100, 100);
-
-		m_Window->line(400, 500, 600, 300);
+		update(deltaTime);
+		render();
 
 		m_Window->display();
 

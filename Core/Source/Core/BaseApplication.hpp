@@ -14,9 +14,10 @@ namespace Core
 		~BaseApplication();
 
 		virtual void update(float dt);
+		virtual void render();
 		void run();
 
-	private:
+	protected:
 		
 		std::unique_ptr<Window> m_Window;
 
