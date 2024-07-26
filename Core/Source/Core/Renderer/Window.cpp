@@ -34,3 +34,29 @@ void Core::Window::rect(float positionX, float positionY, float width, float hei
 
 	m_Window.draw(m_RectangleShape);
 }
+
+void Core::Window::line(float x1, float y1, float x2, float y2)
+{
+	sf::Vertex line[2] = {
+		sf::Vertex(sf::Vector2f(x1, y1)),
+		sf::Vertex(sf::Vector2f(x2, y2))
+	};
+
+	m_Window.draw(line, 2, sf::Lines);
+}
+
+void Core::Window::clear(int r, int g, int b, int alpha)
+{
+	sf::Color clearColor(r, g, b, alpha)
+	m_Window.clear(clearColor);
+}
+
+void Core::Window::display()
+{
+	m_Window.display();
+}
+
+void Core::Window::close()
+{
+	m_Window.close();
+}

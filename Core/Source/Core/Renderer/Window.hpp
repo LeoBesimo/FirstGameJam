@@ -16,7 +16,12 @@ namespace Core
 
 		std::vector<sf::Event> getEvents();
 
-		void rect(float positionX, float positionY, float width, float height);
+		void rect(float x, float y, float width, float height);
+		void line(float x1, float y1, float x2, float y2);
+
+		void clear(int r, int g, int b, int alpha);
+		void display();
+		void close();
 
 	private:
 		unsigned int m_Width, m_Height;
