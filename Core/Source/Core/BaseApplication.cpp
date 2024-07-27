@@ -10,7 +10,7 @@ Core::BaseApplication::~BaseApplication()
 
 void Core::BaseApplication::update(float dt)
 {
-	std::cout << dt << "\n";
+	//std::cout << dt << "\n";
 }
 
 void Core::BaseApplication::render()
@@ -34,12 +34,18 @@ void Core::BaseApplication::run()
 			{
 				m_Window->close();
 			}
+
+			if (event.type == sf::Event::KeyPressed)
+			{
+				//std::cout << event.key.scancode << "\n";
+			}
 		}
 
 		m_Window->setClearColor();
 
 		m_Window->clear();
 
+		m_EventHandler.update(events);
 		update(deltaTime);
 		render();
 

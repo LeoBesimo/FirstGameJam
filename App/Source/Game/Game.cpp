@@ -2,6 +2,15 @@
 
 Game::Game()
 {
+	m_EventHandler.addKeyCallback(Core::Keyboard::A, [&]()
+		{
+			std::cout << "A key Pressed\n";
+		});
+
+	m_EventHandler.addKeyCallback(Core::Keyboard::B, [&]()
+		{
+			std::cout << "B key Pressed\n";
+		});
 }
 
 Game::~Game()
@@ -11,7 +20,7 @@ Game::~Game()
 void Game::update(float dt)
 {
 	BaseApplication::update(dt);
-	std::cout << "From Derived Class\n";
+	//std::cout << "From Derived Class\n";
 }
 
 void Game::render()

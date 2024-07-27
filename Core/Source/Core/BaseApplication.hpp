@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Renderer/Window.hpp"
+#include "System/EventHandler.hpp"
 
 namespace Core
 {
@@ -20,6 +21,8 @@ namespace Core
 	protected:
 		
 		std::unique_ptr<Window> m_Window;
+		EventHandler m_EventHandler;
+
 
 	};
 }
