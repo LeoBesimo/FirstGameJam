@@ -20,6 +20,8 @@ namespace Core
 		void line(float x1, float y1, float x2, float y2);
 		void circle(float x, float y, float radius);
 
+		void text(float x, float y, std::string text, unsigned int size);
+
 		void fill(int r = 0, int g = 0, int b = 0, int alpha = 255);
 		void noFill();
 		void stroke(int r = 0, int g = 0, int b = 0, int alpha = 255);
@@ -41,6 +43,9 @@ namespace Core
 		sf::CircleShape m_CircleShape;
 		sf::RectangleShape m_RectangleShape;
 		sf::Vertex m_Line[2];
+
+		sf::Text m_Text;
+		sf::Font m_Font;
 
 	};
 }

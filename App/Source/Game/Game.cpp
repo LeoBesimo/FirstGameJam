@@ -21,4 +21,6 @@ void Game::render()
 	m_Window->rect(100, 100, 100, 100);
 
 	m_Window->line(400, 500, 600, 300);
+
+	m_Window->text(150, 200, "Hello World!", 24);
 }

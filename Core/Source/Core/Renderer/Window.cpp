@@ -55,6 +55,19 @@ void Core::Window::circle(float x, float y, float radius)
 	m_Window.draw(m_CircleShape);
 }
 
+void Core::Window::text(float x, float y, std::string text, unsigned int size)
+{
+	m_Font.loadFromFile("C:/Dev/FirstGameJam/Core/Source/Core/Renderer/Fonts/Roboto-Regular.ttf");
+
+	m_Text.setFont(m_Font);
+	m_Text.setPosition(sf::Vector2f(x, y));
+	m_Text.setCharacterSize(size);
+	m_Text.setFillColor(m_FillColor);
+	m_Text.setString(text);
+
+	m_Window.draw(m_Text);
+}
+
 void Core::Window::fill(int r, int g, int b, int alpha)
 {
 	sf::Color fillColor(r, g, b, alpha);
