@@ -3,6 +3,7 @@
 Core::Window::Window(unsigned int width, unsigned int height, std::string title):
 	m_Width(width), m_Height(height), m_Window(sf::VideoMode(width,height), title)
 {
+	m_Font.loadFromFile("Fonts/Roboto-Regular.ttf");
 }
 
 Core::Window::~Window()
@@ -57,8 +58,6 @@ void Core::Window::circle(float x, float y, float radius)
 
 void Core::Window::text(float x, float y, std::string text, unsigned int size)
 {
-	m_Font.loadFromFile("C:/Dev/FirstGameJam/Core/Source/Core/Renderer/Fonts/Roboto-Regular.ttf");
-
 	m_Text.setFont(m_Font);
 	m_Text.setPosition(sf::Vector2f(x, y));
 	m_Text.setCharacterSize(size);
