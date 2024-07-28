@@ -55,7 +55,7 @@ namespace Core
 		ALT = 129,
 		ALTGR = 133,
 		CAPSLOCK = 76,
-		DELETE= 83
+		DELETE = 83
 	};
 
 	class EventHandler

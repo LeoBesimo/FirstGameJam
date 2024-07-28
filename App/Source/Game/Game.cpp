@@ -2,14 +2,28 @@
 
 Game::Game()
 {
+	m_EventHandler.addKeyCallback(Core::Keyboard::W, [&]()
+		{
+			std::cout << "W key Pressed\n";
+			m_Window->moveView(0, -0.1f);
+		});
+
 	m_EventHandler.addKeyCallback(Core::Keyboard::A, [&]()
 		{
 			std::cout << "A key Pressed\n";
+			m_Window->moveView(-0.1f, 0);
 		});
 
-	m_EventHandler.addKeyCallback(Core::Keyboard::B, [&]()
+	m_EventHandler.addKeyCallback(Core::Keyboard::S, [&]()
 		{
-			std::cout << "B key Pressed\n";
+			std::cout << "S key Pressed\n";
+			m_Window->moveView(0, 0.1f);
+		});
+
+	m_EventHandler.addKeyCallback(Core::Keyboard::D, [&]()
+		{
+			std::cout << "D key Pressed\n";
+			m_Window->moveView(0.1f, 0);
 		});
 }
 
