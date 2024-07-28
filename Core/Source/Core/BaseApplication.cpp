@@ -28,7 +28,7 @@ void Core::BaseApplication::run()
 	{
 		std::vector<sf::Event> events = m_Window->getEvents();
 
-		for (sf::Event event : events)
+		for (sf::Event& event : events)
 		{
 			if (event.type == sf::Event::Closed)
 			{

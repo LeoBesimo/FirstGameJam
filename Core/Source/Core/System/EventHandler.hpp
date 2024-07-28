@@ -77,12 +77,14 @@ namespace Core
 		{
 			Keyboard key;
 			bool pressed;
+			bool whileHeld;
 			std::function<void()> keyCallback;
 
-			KeyboardState(Keyboard key,std::function<void()> callback)
+			KeyboardState(Keyboard key,std::function<void()> callback, bool execWhileHeld = true)
 			{
 				this->key = key;
 				pressed = false;
+				this->whileHeld = execWhileHeld;
 				keyCallback = callback;
 			}
 		};
@@ -119,7 +121,7 @@ namespace Core
 		EventHandler();
 		~EventHandler();
 
-		void addKeyCallback(Keyboard key, std::function<void()> callback);
+		void addKeyCallback(Keyboard key, std::function<void()> callback, bool execWhileHeld = true);
 		void removeKeyCallback(Keyboard key);
 		void addMouseCallback(Mouse button, std::function<void()> callback, bool execWhileHeld = false);
 		void removeMouseCallback(Mouse button);

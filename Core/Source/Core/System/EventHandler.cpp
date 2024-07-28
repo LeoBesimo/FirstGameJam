@@ -3,7 +3,7 @@
 void Core::EventHandler::update(std::vector<sf::Event> events)
 {
 
-	for (sf::Event event : events)
+	for (sf::Event& event : events)
 	{
 		switch (event.type)
 		{
@@ -33,15 +33,16 @@ void Core::EventHandler::update(std::vector<sf::Event> events)
 	}
 
 
-	for (KeyboardState state : m_KeyStates)
+	for (KeyboardState& state : m_KeyStates)
 	{
 		if (state.pressed) 
 			state.keyCallback();
 	}
 
-	for (MouseState state : m_MouseStates)
+	for (MouseState& state : m_MouseStates)
 	{
-		if (state.pressed) state.mouseCallback();
+		if (state.pressed)
+			state.mouseCallback();
 	}
 }
 
@@ -50,13 +51,14 @@ void Core::EventHandler::keyPressed(sf::Event event)
 	for (KeyboardState& state : m_KeyStates)
 	{
 		if (static_cast<int>(state.key) == event.key.scancode)
-			state.pressed = true;
+			if (!state.whileHeld) state.keyCallback();
+			else state.pressed = true;
 	}
 }
 
 void Core::EventHandler::keyReleased(sf::Event event)
 {
-	for (KeyboardState &state : m_KeyStates)
+	for (KeyboardState& state : m_KeyStates)
 	{
 		if (static_cast<int>(state.key) == event.key.scancode)
 			state.pressed = false;
@@ -71,9 +73,9 @@ Core::EventHandler::~EventHandler()
 {
 }
 
-void Core::EventHandler::addKeyCallback(Keyboard key, std::function<void()> callback)
+void Core::EventHandler::addKeyCallback(Keyboard key, std::function<void()> callback, bool execWhileHeld)
 {
-	m_KeyStates.push_back(KeyboardState(key, callback));
+	m_KeyStates.push_back(KeyboardState(key, callback, execWhileHeld));
 }
 
 void Core::EventHandler::removeKeyCallback(Keyboard key)

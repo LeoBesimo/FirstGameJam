@@ -35,6 +35,11 @@ Game::Game()
 		{
 			std::cout << "On Hold Right\n";
 		}, true);
+
+	m_EventHandler.addKeyCallback(Core::Keyboard::SPACE, [&]()
+		{
+			std::cout << m_MousePosition.x << " " << m_MousePosition.y << "\n";
+		}, false);
 }
 
 Game::~Game()
