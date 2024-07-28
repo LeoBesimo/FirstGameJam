@@ -56,6 +56,15 @@ void Core::Window::circle(float x, float y, float radius)
 	m_Window.draw(m_CircleShape);
 }
 
+void Core::Window::sprite(float x, float y, float scaleFactor)
+{
+	m_Sprite.setTexture(m_Texture);
+	m_Sprite.setPosition(x, y);
+	m_Sprite.setScale(scaleFactor, scaleFactor);
+	
+	m_Window.draw(m_Sprite);
+}
+
 void Core::Window::text(float x, float y, std::string text, unsigned int size)
 {
 	m_Text.setFont(m_Font);
@@ -89,6 +98,17 @@ void Core::Window::noStroke()
 {
 	sf::Color strokeColor(0, 0, 0, 0);
 	m_StrokeColor = strokeColor;
+}
+
+void Core::Window::loadSpritesheet(std::string path)
+{
+	m_Spritesheet.loadFromFile(path);
+}
+
+void Core::Window::loadTexture(int x, int y, int width, int height)
+{
+	sf::IntRect area(x, y, width, height);
+	m_Texture.loadFromImage(m_Spritesheet, area);
 }
 
 void Core::Window::clear()

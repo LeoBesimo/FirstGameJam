@@ -19,6 +19,7 @@ namespace Core
 		void rect(float x, float y, float width, float height);
 		void line(float x1, float y1, float x2, float y2);
 		void circle(float x, float y, float radius);
+		void sprite(float x, float y, float scaleFactor);
 
 		void text(float x, float y, std::string text, unsigned int size);
 
@@ -26,6 +27,9 @@ namespace Core
 		void noFill();
 		void stroke(int r = 0, int g = 0, int b = 0, int alpha = 255);
 		void noStroke();
+
+		void loadSpritesheet(std::string path);
+		void loadTexture(int x, int y, int width, int height);
 
 		void clear();
 		void setClearColor(int r = 255, int g = 255, int b = 255, int alpha = 255);
@@ -46,6 +50,10 @@ namespace Core
 		sf::CircleShape m_CircleShape;
 		sf::RectangleShape m_RectangleShape;
 		sf::Vertex m_Line[2];
+		sf::Sprite m_Sprite;
+
+		sf::Image m_Spritesheet;
+		sf::Texture m_Texture;
 
 		sf::View m_View = m_Window.getDefaultView();
 

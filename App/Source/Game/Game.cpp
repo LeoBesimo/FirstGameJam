@@ -41,7 +41,11 @@ void Game::render()
 {
 	m_Window->line(900, 100, 300, 800);
 
-	m_Window->rect(100, 100, 100, 100);
+	m_Window->loadSpritesheet("Textures/testcharacter.png");
+	m_Window->loadTexture(0, 0, 16, 32);
+	m_Window->sprite(300, 300, 10);
+
+	m_Window->rect(100, 100, 160, 320);
 
 	m_Window->line(400, 500, 600, 300);
 
