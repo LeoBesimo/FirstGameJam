@@ -5,6 +5,7 @@
 
 #include "Renderer/Window.hpp"
 #include "System/EventHandler.hpp"
+#include "Math/CoreMath.h"
 
 namespace Core
 {
@@ -23,6 +24,7 @@ namespace Core
 		std::unique_ptr<Window> m_Window;
 		EventHandler m_EventHandler;
 
+		Math::Vector2 m_MousePosition;
 
 	};
 }

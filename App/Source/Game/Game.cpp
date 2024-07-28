@@ -25,6 +25,16 @@ Game::Game()
 			std::cout << "D key Pressed\n";
 			m_Window->moveView(0.1f, 0);
 		});
+
+	m_EventHandler.addMouseCallback(Core::Mouse::LEFT, [&]()
+		{
+			std::cout << "On Press Left\n";
+		});
+
+	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
+		{
+			std::cout << "On Hold Right\n";
+		}, true);
 }
 
 Game::~Game()

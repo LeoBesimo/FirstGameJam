@@ -2,6 +2,8 @@
 
 #include <functional>
 #include <SFML/Graphics.hpp>
+#include "Core/Math/CoreMath.h"
+#include <iostream>
 
 namespace Core
 {
@@ -58,6 +60,13 @@ namespace Core
 		DELETE = 83
 	};
 
+	enum class Mouse
+	{
+		LEFT = 0,
+		RIGHT = 1,
+		MIDDLE = 2
+	};
+
 	class EventHandler
 	{
 		friend class BaseApplication;
@@ -76,20 +85,35 @@ namespace Core
 				pressed = false;
 				keyCallback = callback;
 			}
+		};
 
-			/*KeyboardState& operator=(const KeyboardState&)
+		struct MouseState
+		{
+			Mouse button;
+			bool pressed;
+			bool whileHeld;
+			std::function<void()> mouseCallback;
+
+			MouseState(Mouse button, std::function<void()> callback, bool execWhileHeld = false)
 			{
-				KeyboardState state(key, keyCallback);
-				state.pressed = pressed;
-				return state;
-			};*/
+				this->button = button;
+				this->pressed = false;
+				this->whileHeld = execWhileHeld;
+				this->mouseCallback = callback;
+			}
 		};
 
 		std::vector<KeyboardState> m_KeyStates;
+		std::vector<MouseState> m_MouseStates;
+
+		Math::Vector2 m_MousePosition;
 
 		void update(std::vector<sf::Event> events);
 		void keyPressed(sf::Event event);
 		void keyReleased(sf::Event event);
+		void mousePressed(sf::Event event);
+		void mouseReleased(sf::Event event);
+		void mouseMoved(sf::Event event);
 
 	public:
 		EventHandler();
@@ -97,6 +121,8 @@ namespace Core
 
 		void addKeyCallback(Keyboard key, std::function<void()> callback);
 		void removeKeyCallback(Keyboard key);
+		void addMouseCallback(Mouse button, std::function<void()> callback, bool execWhileHeld = false);
+		void removeMouseCallback(Mouse button);
 	};
 
 }

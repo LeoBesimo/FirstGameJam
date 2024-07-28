@@ -34,11 +34,6 @@ void Core::BaseApplication::run()
 			{
 				m_Window->close();
 			}
-
-			if (event.type == sf::Event::KeyPressed)
-			{
-				//std::cout << event.key.scancode << "\n";
-			}
 		}
 
 		m_Window->setClearColor();
@@ -46,6 +41,7 @@ void Core::BaseApplication::run()
 		m_Window->clear();
 
 		m_EventHandler.update(events);
+		m_MousePosition = m_EventHandler.m_MousePosition;
 		update(deltaTime);
 		render();
 

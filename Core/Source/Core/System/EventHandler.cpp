@@ -16,12 +16,15 @@ void Core::EventHandler::update(std::vector<sf::Event> events)
 			break;
 
 		case sf::Event::MouseButtonPressed:
+			mousePressed(event);
 			break;
 
 		case sf::Event::MouseButtonReleased:
+			mouseReleased(event);
 			break;
 
 		case ::sf::Event::MouseMoved:
+			mouseMoved(event);
 			break;
 
 		default:
@@ -30,28 +33,33 @@ void Core::EventHandler::update(std::vector<sf::Event> events)
 	}
 
 
-	for (unsigned int i = 0; i < m_KeyStates.size(); i++)
+	for (KeyboardState state : m_KeyStates)
 	{
-		if (m_KeyStates[i].pressed) 
-			m_KeyStates[i].keyCallback();
+		if (state.pressed) 
+			state.keyCallback();
+	}
+
+	for (MouseState state : m_MouseStates)
+	{
+		if (state.pressed) state.mouseCallback();
 	}
 }
 
 void Core::EventHandler::keyPressed(sf::Event event)
 {
-	for (unsigned int i = 0; i < m_KeyStates.size(); i++)
+	for (KeyboardState& state : m_KeyStates)
 	{
-		if (static_cast<int>(m_KeyStates[i].key) == event.key.scancode)
-			m_KeyStates[i].pressed = true;
+		if (static_cast<int>(state.key) == event.key.scancode)
+			state.pressed = true;
 	}
 }
 
 void Core::EventHandler::keyReleased(sf::Event event)
 {
-	for (unsigned int i = 0; i < m_KeyStates.size(); i++)
+	for (KeyboardState &state : m_KeyStates)
 	{
-		if (static_cast<int>(m_KeyStates[i].key) == event.key.scancode)
-			m_KeyStates[i].pressed = false;
+		if (static_cast<int>(state.key) == event.key.scancode)
+			state.pressed = false;
 	}
 }
 
@@ -77,4 +85,49 @@ void Core::EventHandler::removeKeyCallback(Keyboard key)
 			m_KeyStates.erase(m_KeyStates.begin() + i);
 		}
 	}
+}
+
+void Core::EventHandler::addMouseCallback(Mouse button, std::function<void()> callback, bool execWhileHeld)
+{
+	m_MouseStates.push_back(MouseState(button, callback, execWhileHeld));
+}
+
+void Core::EventHandler::removeMouseCallback(Mouse button)
+{
+	for (int i = m_MouseStates.size() - 1; i >= 0; i--)
+	{
+		if (m_MouseStates[i].button == button)
+		{
+			m_MouseStates.erase(m_MouseStates.begin() + i);
+		}
+	}
+}
+
+void Core::EventHandler::mousePressed(sf::Event event)
+{
+	for (MouseState &mouseState : m_MouseStates)
+	{
+		if (static_cast<int>(mouseState.button) == event.mouseButton.button)
+		{
+			if (!mouseState.whileHeld) mouseState.mouseCallback();
+			else mouseState.pressed = true;
+		}
+	}
+}
+
+void Core::EventHandler::mouseReleased(sf::Event event)
+{
+	for (MouseState &mouseState : m_MouseStates)
+	{
+		if (static_cast<int>(mouseState.button) == event.mouseButton.button)
+		{
+			mouseState.pressed = false;
+		}
+	}
+}
+
+void Core::EventHandler::mouseMoved(sf::Event event)
+{
+	m_MousePosition.x = event.mouseMove.x;
+	m_MousePosition.y = event.mouseMove.y;
 }
