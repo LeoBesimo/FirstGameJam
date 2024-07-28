@@ -32,6 +32,9 @@ namespace Core
 		void display();
 		void close();
 
+		void zoomView(float zoomFactor);
+		void moveView(float offsetX, float offsetY);
+
 	private:
 		unsigned int m_Width, m_Height;
 
@@ -43,6 +46,8 @@ namespace Core
 		sf::CircleShape m_CircleShape;
 		sf::RectangleShape m_RectangleShape;
 		sf::Vertex m_Line[2];
+
+		sf::View m_View = m_Window.getDefaultView();
 
 		sf::Text m_Text;
 		sf::Font m_Font;

@@ -111,3 +111,15 @@ void Core::Window::close()
 {
 	m_Window.close();
 }
+
+void Core::Window::zoomView(float zoomFactor)
+{
+	m_View.zoom(zoomFactor);
+	m_Window.setView(m_View);
+}
+
+void Core::Window::moveView(float offsetX, float offsetY)
+{
+	m_View.move(offsetX, offsetY);
+	m_Window.setView(m_View);
+}
