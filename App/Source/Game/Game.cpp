@@ -2,10 +2,12 @@
 
 Game::Game()
 {
-	m_TextureLoader.loadSpritesheet("test", "Textures/testcharacter.png");
-	m_TextureLoader.getSprite(m_testSprite, "test", 0, 0, 16, 32);
-	//m_testSprite = m_TextureLoader.getSprite("test", 0, 0, 16, 32);
+	m_TextureLoader.loadSpritesheet("character_1", "Textures/testcharacter.png");
+	m_TextureLoader.defineTexture("character_1", "facing_east", 0, 0, 16, 32);
+	m_TextureLoader.defineTexture("character_1", "facing_west", 32, 0, 16, 32);
 
+	m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_west");
+	
 	m_SoundManager.addSound("testSound", "Audio/testsound.wav", 10);
 	m_SoundManager.loadMusic("testMusic", "Audio/Music/testmusic.mp3");
 	m_SoundManager.setMusicVolume(10);
@@ -21,6 +23,8 @@ Game::Game()
 		{
 			std::cout << "A key Pressed\n";
 			m_Window->moveView(-0.1f, 0);
+
+			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_west");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::S, [&]()
@@ -33,6 +37,8 @@ Game::Game()
 		{
 			std::cout << "D key Pressed\n";
 			m_Window->moveView(0.1f, 0);
+
+			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_east");
 		});
 
 	m_EventHandler.addMouseCallback(Core::Mouse::LEFT, [&]()

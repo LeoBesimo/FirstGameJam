@@ -1,59 +1,40 @@
 #include "TextureLoader.hpp"
 #include <iostream>
 
+Core::Spritesheet::Spritesheet(std::string spritesheetID, std::string path) 
+{
+	m_SpritesheetID = spritesheetID;
+	m_Spritesheet.loadFromFile(path);
+}
+
+Core::Spritesheet::~Spritesheet()
+{
+}
+
 void Core::TextureLoader::loadSpritesheet(std::string spritesheetID, std::string path)
 {
-	sf::Texture spritesheet;
-
-	if (!spritesheet.loadFromFile(path))
-	{
-		std::cout << "Error: Texture not found";
-	}
-	else
-	{
-		m_SpritesheetList.emplace_back(spritesheetID, spritesheet);
-		//m_SpriteSheets.push_back({ spritesheetID,spritesheet });
-	}
-
+	Spritesheet* spritesheet = new Spritesheet(spritesheetID, path);
+	m_SpritesheetList.push_back(spritesheet);
 }
 
-sf::Texture Core::TextureLoader::getSpritesheet(std::string spritesheetID)
-{
-	sf::Texture spritesheet;
-
-	for (const auto& spritesheetObj : m_SpritesheetList)
-	{
-		if (std::get<0>(spritesheetObj) == spritesheetID)
-		{
-			spritesheet = std::get<1>(spritesheetObj);
-		}
-	}
-
-	return spritesheet;
-}
-
-sf::Sprite Core::TextureLoader::getSprite(sf::Sprite& sprite, std::string spritesheetID, int x, int y, int width, int height)
-{
-	//sf::Texture spritesheet;
-	////sf::Sprite sprite;
+void Core::TextureLoader::defineTexture(std::string spritesheetID, std::string textureID, int x, int y, int width, int height) {
 	sf::IntRect textureRect(x, y, width, height);
-
-	for (const auto& spritesheetObj : m_SpritesheetList) {
-		if (std::get<0>(spritesheetObj) == spritesheetID) {
-			//spritesheet = std::get<1>(spritesheetObj);
-			sprite.setTexture(std::get<1>(spritesheetObj));
+	
+	for (std::vector<int>::size_type i = 0; i != m_SpritesheetList.size(); i++) {
+		if (m_SpritesheetList[i]->m_SpritesheetID == spritesheetID) {
+			m_SpritesheetList[i]->m_Textures[textureID] = textureRect;
 		}
 	}
+}
 
-	/*for (SheetIdentifier& sheet : m_SpriteSheets)
-	{
-		if(sheet.id == spritesheetID)
-		{
-			sprite.setTexture(sheet.texture);
+sf::Sprite Core::TextureLoader::setTexture(sf::Sprite& sprite, std::string spritesheetID, std::string textureID)
+{
+	for (std::vector<int>::size_type i = 0; i != m_SpritesheetList.size(); i++) {
+		if (m_SpritesheetList[i]->m_SpritesheetID == spritesheetID) {
+			sprite.setTexture(m_SpritesheetList[i]->m_Spritesheet);
+			sprite.setTextureRect(m_SpritesheetList[i]->m_Textures.at(textureID));
 		}
-	}*/
-
-	sprite.setTextureRect(textureRect);
+	}
 
 	return sprite;
 }
