@@ -12,7 +12,7 @@ namespace Core
 		AudioManager() {};
 
 		void loadSound(std::string soundID, std::string path);
-		void playSound(std::string soundID);
+		void playSound(sf::Sound sound, std::string soundID);
 
 	private:
 

@@ -14,10 +14,8 @@ void Core::AudioManager::loadSound(std::string soundID, std::string path)
 	}
 }
 
-void Core::AudioManager::playSound(std::string soundID)
+void Core::AudioManager::playSound(sf::Sound sound, std::string soundID)
 {
-	sf::Sound sound;
-
 	for (const auto& soundObj : m_SoundList)
 	{
 		if (std::get<0>(soundObj) == soundID)
