@@ -6,6 +6,7 @@
 #include "Renderer/Window.hpp"
 #include "System/EventHandler.hpp"
 #include "Math/CoreMath.h"
+#include "Physics/Physics.hpp"
 
 namespace Core
 {
@@ -25,6 +26,8 @@ namespace Core
 		EventHandler m_EventHandler;
 
 		Math::Vector2 m_MousePosition;
+
+		Physics::PhysicsWorld m_PhysicsWorld;
 
 	};
 }

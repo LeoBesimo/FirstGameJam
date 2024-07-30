@@ -42,6 +42,7 @@ void Core::BaseApplication::run()
 
 		m_EventHandler.update(events);
 		m_MousePosition = m_EventHandler.m_MousePosition;
+		m_PhysicsWorld.update(deltaTime);
 		update(deltaTime);
 		render();
 
