@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include "Core/Math/CoreMath.h"
+
 namespace Core 
 {
 	class Window 
@@ -39,6 +41,9 @@ namespace Core
 		void zoomView(float zoomFactor);
 		void moveView(float offsetX, float offsetY);
 		void setView(float x, float y);
+
+		Math::Vector2 mapPixelToCoords(float x, float y);
+		Math::Vector2 mapPixelToCoords(Math::Vector2 point);
 
 	private:
 		unsigned int m_Width, m_Height;

@@ -147,3 +147,14 @@ void Core::Window::setView(float x, float y)
 {
 	m_View.setCenter(x, y);
 }
+
+Core::Math::Vector2 Core::Window::mapPixelToCoords(float x, float y)
+{
+	sf::Vector2f temp = m_Window.mapPixelToCoords(sf::Vector2i(x,y));
+	return Core::Math::Vector2(temp.x,temp.y);
+}
+
+Core::Math::Vector2 Core::Window::mapPixelToCoords(Math::Vector2 point)
+{
+	return mapPixelToCoords(point.x, point.y);
+}
