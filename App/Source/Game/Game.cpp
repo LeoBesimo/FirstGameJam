@@ -35,7 +35,7 @@ Game::Game()
 	m_EventHandler.addMouseCallback(Core::Mouse::LEFT, [&]()
 		{
 			std::cout << "On Press Left\n";
-			m_AudioManager.playSound(m_testSound, "test");
+			m_AudioManager.playSound("test");
 		});
 
 	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
