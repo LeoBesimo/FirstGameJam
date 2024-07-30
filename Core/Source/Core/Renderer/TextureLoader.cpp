@@ -30,7 +30,7 @@ sf::Sprite Core::TextureLoader::getSprite(std::string spritesheetID, int x, int 
 {
 	sf::Texture spritesheet;
 	sf::Sprite sprite;
-	sf::IntRect textureRect(x, y, widht, height);
+	sf::IntRect textureRect(x, y, width, height);
 
 	for (const auto& spritesheetObj : m_SpritesheetList) {
 		if (std::get<0>(spritesheetObj) == spritesheetID) {

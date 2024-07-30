@@ -56,13 +56,12 @@ void Core::Window::circle(float x, float y, float radius)
 	m_Window.draw(m_CircleShape);
 }
 
-void Core::Window::sprite(float x, float y, float scaleFactor)
+void Core::Window::drawSprite(sf::Sprite& sprite, float x, float y, float scaleFactor)
 {
-	m_Sprite.setTexture(m_Texture);
-	m_Sprite.setPosition(x, y);
-	m_Sprite.setScale(scaleFactor, scaleFactor);
+	sprite.setPosition(x, y);
+	sprite.setScale(scaleFactor, scaleFactor);
 	
-	m_Window.draw(m_Sprite);
+	m_Window.draw(sprite);
 }
 
 void Core::Window::text(float x, float y, std::string text, unsigned int size)

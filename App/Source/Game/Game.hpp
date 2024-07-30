@@ -11,4 +11,7 @@ public:
 
     void update(float dt) override;
     void render() override;
+
+private:
+    sf::Sprite m_testSprite;
 };

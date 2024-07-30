@@ -19,7 +19,7 @@ namespace Core
 		void rect(float x, float y, float width, float height);
 		void line(float x1, float y1, float x2, float y2);
 		void circle(float x, float y, float radius);
-		void sprite(float x, float y, float scaleFactor);
+		void drawSprite(sf::Sprite& sprite, float x, float y, float scaleFactor);
 
 		void text(float x, float y, std::string text, unsigned int size);
 

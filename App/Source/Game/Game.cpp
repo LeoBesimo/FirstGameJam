@@ -2,6 +2,9 @@
 
 Game::Game()
 {
+	m_TextureLoader.loadSpritesheet("test", "Textures/testcharacter.png");
+	m_testSprite = m_TextureLoader.getSprite("test", 0, 0, 16, 32);
+	
 	m_EventHandler.addKeyCallback(Core::Keyboard::W, [&]()
 		{
 			std::cout << "W key Pressed\n";
@@ -58,7 +61,7 @@ void Game::render()
 
 	m_Window->loadSpritesheet("Textures/testcharacter.png");
 	m_Window->loadTexture(0, 0, 16, 32);
-	m_Window->sprite(300, 300, 10);
+	m_Window->drawSprite(m_testSprite, 300, 300, 10);
 
 	m_Window->rect(100, 100, 160, 320);
 

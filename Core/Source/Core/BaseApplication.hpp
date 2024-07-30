@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Renderer/Window.hpp"
+#include "Renderer/TextureLoader.hpp"	
 #include "System/EventHandler.hpp"
 #include "Math/CoreMath.h"
 
@@ -23,6 +24,7 @@ namespace Core
 		
 		std::unique_ptr<Window> m_Window;
 		EventHandler m_EventHandler;
+		TextureLoader m_TextureLoader;
 
 		Math::Vector2 m_MousePosition;
 
