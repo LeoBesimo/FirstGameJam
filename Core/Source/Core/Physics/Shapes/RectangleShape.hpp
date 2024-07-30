@@ -16,6 +16,8 @@ namespace Core::Physics
 
 		std::vector<Math::Vector2> getCorners();
 
+		void update(float dt) override;
+
 	private:
 		std::vector<Math::Vector2> m_Corners;
 		 

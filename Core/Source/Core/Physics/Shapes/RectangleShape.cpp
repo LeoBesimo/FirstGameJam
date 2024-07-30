@@ -28,6 +28,12 @@ std::vector<Core::Math::Vector2> Core::Physics::RectangleShape::getCorners()
 	return m_Corners;
 }
 
+void Core::Physics::RectangleShape::update(float dt)
+{
+	PhysicsBody::update(dt);
+	calculateCorners();
+}
+
 void Core::Physics::RectangleShape::calculateCorners()
 {
 	m_Corners.clear();

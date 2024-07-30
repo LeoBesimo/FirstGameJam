@@ -19,7 +19,7 @@ namespace Core::Physics
 		PhysicsBody(Math::Vector2 position);
 		~PhysicsBody();
 
-		void update(float dt);
+		virtual void update(float dt);
 
 		//Setters
 		void setGravity(Math::Vector2 gravity);

@@ -14,4 +14,6 @@ public:
 
 private:
     sf::Sprite m_testSprite;
+    
+    Core::Physics::RectangleShape m_PhysicsRect;
 };

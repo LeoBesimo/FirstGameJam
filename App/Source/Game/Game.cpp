@@ -44,6 +44,13 @@ Game::Game()
 		{
 			std::cout << m_MousePosition.x << " " << m_MousePosition.y << "\n";
 		}, false);
+
+	m_PhysicsRect.setMass(1);
+	m_PhysicsRect.setPosition(Core::Math::Vector2(300,300));
+	m_PhysicsRect.setSize(Core::Math::Vector2(40, 80));
+	m_PhysicsRect.setVelocity(Core::Math::Vector2(50, 0));
+	m_PhysicsRect.setGravity(Core::Math::Vector2(0, 100));
+
 }
 
 Game::~Game()
@@ -53,15 +60,24 @@ Game::~Game()
 void Game::update(float dt)
 {
 	BaseApplication::update(dt);
-	//std::cout << "From Derived Class\n";
+	//std::cout << "From Derived Class\n";$
+	m_PhysicsRect.update(dt);
 }
 
 void Game::render()
 {
 	m_Window->line(900, 100, 300, 800);
 
+	std::vector<Core::Math::Vector2> corners = m_PhysicsRect.getCorners();
+
+	for (unsigned int i = 0; i < corners.size(); i++)
+	{
+		m_Window->line(corners[i].x, corners[i].y, corners[(i + 1) % corners.size()].x, corners[(i + 1) % corners.size()].y);
+	}
+
 	m_Window->loadSpritesheet("Textures/testcharacter.png");
 	m_Window->loadTexture(0, 0, 16, 32);
+	m_testSprite.setColor(sf::Color(255, 0, 255, 128));
 	m_Window->drawSprite(m_testSprite, 300, 300, 10);
 
 	//m_Window->rect(100, 100, 160, 320);
