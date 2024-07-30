@@ -4,7 +4,7 @@ Game::Game()
 {
 	m_TextureLoader.loadSpritesheet("test", "Textures/testcharacter.png");
 	m_testSprite = m_TextureLoader.getSprite("test", 0, 0, 16, 32);
-	
+
 	m_EventHandler.addKeyCallback(Core::Keyboard::W, [&]()
 		{
 			std::cout << "W key Pressed\n";

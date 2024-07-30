@@ -7,6 +7,7 @@
 #include "Renderer/TextureLoader.hpp"	
 #include "System/EventHandler.hpp"
 #include "Math/CoreMath.h"
+#include "Physics/Physics.hpp"
 
 namespace Core
 {
@@ -27,6 +28,8 @@ namespace Core
 		TextureLoader m_TextureLoader;
 
 		Math::Vector2 m_MousePosition;
+
+		Physics::PhysicsWorld m_PhysicsWorld;
 
 	};
 }
