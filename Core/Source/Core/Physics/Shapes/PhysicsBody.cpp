@@ -4,7 +4,7 @@ Core::Physics::PhysicsBody::PhysicsBody()
 {
 	setMass(1);
 	setInertia(1);
-	m_OnCollision = [&]() {};
+	m_OnCollision = [&](Manifold m, std::shared_ptr<PhysicsBody> self) {};
 }
 
 Core::Physics::PhysicsBody::PhysicsBody(Math::Vector2 position)
@@ -12,7 +12,7 @@ Core::Physics::PhysicsBody::PhysicsBody(Math::Vector2 position)
 	this->m_Position = position;
 	setMass(1);
 	setInertia(1);
-	m_OnCollision = [&]() {};
+	m_OnCollision = [&](Manifold m, std::shared_ptr<PhysicsBody> self) {};
 }
 
 Core::Physics::PhysicsBody::~PhysicsBody()
@@ -81,7 +81,7 @@ void Core::Physics::PhysicsBody::setInertia(float inertia)
 	else m_InvInertia = 1 / inertia;
 }
 
-void Core::Physics::PhysicsBody::setOnCollisionFunction(std::function<void()> onCollision)
+void Core::Physics::PhysicsBody::setOnCollisionFunction(std::function<void(Manifold m, std::shared_ptr<PhysicsBody> self)> onCollision)
 {
 	m_OnCollision = onCollision;
 }

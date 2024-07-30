@@ -5,6 +5,8 @@ Game::Game()
 	m_TextureLoader.loadSpritesheet("character_1", "Textures/testcharacter.png");
 	m_TextureLoader.defineTexture("character_1", "facing_east", 0, 0, 16, 32);
 	m_TextureLoader.defineTexture("character_1", "facing_west", 32, 0, 16, 32);
+	m_TextureLoader.defineTexture("character_1", "facing_up", 16, 0, 16, 32);
+	m_TextureLoader.defineTexture("character_1", "facing_down", 48, 0, 16, 32);
 
 	m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_west");
 	
@@ -17,6 +19,7 @@ Game::Game()
 		{
 			std::cout << "W key Pressed\n";
 			m_Window->moveView(0, -0.1f);
+			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_up");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::A, [&]()
@@ -31,6 +34,7 @@ Game::Game()
 		{
 			std::cout << "S key Pressed\n";
 			m_Window->moveView(0, 0.1f);
+			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_down");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::D, [&]()
@@ -69,7 +73,7 @@ Game::Game()
 	m_PhysicsRect->setSize(Core::Math::Vector2(40, 80));
 	m_PhysicsRect->setVelocity(Core::Math::Vector2(50, 0));
 	m_PhysicsRect->setGravity(Core::Math::Vector2(0, 100));
-	m_PhysicsRect->setOnCollisionFunction([&]()
+	m_PhysicsRect->setOnCollisionFunction([&](Core::Physics::Manifold manifold, std::shared_ptr<Core::Physics::PhysicsBody> self)
 		{
 			m_Window->stroke(255, 0, 0, 255);
 		});

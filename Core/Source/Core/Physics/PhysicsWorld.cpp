@@ -13,8 +13,8 @@ void Core::Physics::PhysicsWorld::update(float dt)
 				if (m.colliding)
 				{
 					m_Solver.resolveStatic(m);
-					m.bodyA->m_OnCollision();
-					m.bodyB->m_OnCollision();
+					m.bodyA->m_OnCollision(m, m.bodyA);
+					m.bodyB->m_OnCollision(m, m.bodyB);
 				}
 			}
 		}

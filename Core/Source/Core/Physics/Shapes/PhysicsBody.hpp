@@ -13,11 +13,23 @@ namespace Core::Physics
 		RECT
 	};
 
+	struct Manifold;
+
 	class PhysicsBody
 	{
 		friend class PhysicsWorld;
 
 	public:
+
+		/*struct CollisionData
+		{
+			std::shared_ptr<PhysicsBody> bodyA;
+			std::shared_ptr<PhysicsBody> bodyB;
+
+			float penetration;
+			Math::Vector2 normal;
+			Math::Vector2 contact;
+		};*/
 
 		PhysicsBody();
 		PhysicsBody(Math::Vector2 position);
@@ -38,7 +50,7 @@ namespace Core::Physics
 		void setMass(float mass);
 		void setInertia(float inertia);
 
-		void setOnCollisionFunction(std::function<void()> onCollision);
+		void setOnCollisionFunction(std::function<void(Manifold data, std::shared_ptr<PhysicsBody> self)> onCollision);
 
 		//Getters
 		ColliderType getColliderType();
@@ -78,6 +90,17 @@ namespace Core::Physics
 		float m_Inertia;
 		float m_InvInertia;
 
-		std::function<void()> m_OnCollision;
+		std::function<void(Manifold m, std::shared_ptr<PhysicsBody> self)> m_OnCollision;
+	};
+
+	struct Manifold
+	{
+		bool colliding;
+		std::shared_ptr<PhysicsBody> bodyA;
+		std::shared_ptr<PhysicsBody> bodyB;
+
+		float penetration;
+		Math::Vector2 normal;
+		Math::Vector2 contact;
 	};
 }
