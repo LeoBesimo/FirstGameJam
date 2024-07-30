@@ -5,6 +5,7 @@
 
 #include "Shapes/Shapes.hpp"
 #include "CollisionDetection.hpp"
+#include "CollisionSolver.hpp"
 
 namespace Core::Physics
 {
@@ -23,5 +24,6 @@ namespace Core::Physics
 
 	private:
 		std::vector<std::shared_ptr<PhysicsBody>> m_Bodies;
+		CollisionSolver m_Solver;
 	};
 }

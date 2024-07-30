@@ -12,6 +12,7 @@ void Core::Physics::PhysicsWorld::update(float dt)
 				Manifold m = collide(m_Bodies[i], m_Bodies[j]);
 				if (m.colliding)
 				{
+					m_Solver.resolveStatic(m);
 					m.bodyA->m_OnCollision();
 					m.bodyB->m_OnCollision();
 				}
