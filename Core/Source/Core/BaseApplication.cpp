@@ -42,8 +42,8 @@ void Core::BaseApplication::run()
 
 		m_EventHandler.update(events);
 		m_MousePosition = m_EventHandler.m_MousePosition;
+		m_Window->stroke(0, 0, 0, 255);
 		m_PhysicsWorld.update(deltaTime);
-		
 		update(deltaTime);
 		if (m_RenderPhysicsBodies) renderPhysicsBodies();
 		render();

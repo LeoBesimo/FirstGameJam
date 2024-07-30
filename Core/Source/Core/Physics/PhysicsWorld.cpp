@@ -10,8 +10,8 @@ void Core::Physics::PhysicsWorld::update(float dt)
 			Manifold m = boundingBoxCollision(m_Bodies[i], m_Bodies[j]);
 			if (m.colliding)
 			{
-				//m.bodyA->m_OnCollision();
-				//m.bodyB->m_OnCollision();
+				m.bodyA->m_OnCollision();
+				m.bodyB->m_OnCollision();
 			}
 		}
 	}

@@ -42,7 +42,7 @@ Game::Game()
 	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
 		{
 			std::cout << "On Hold Right\n";
-			m_AudioManager.playSound(m_testSound, "test");
+			m_AudioManager.playSound("test");
 		}, true);
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::SPACE, [&]()
@@ -55,12 +55,17 @@ Game::Game()
 
 	m_PhysicsRect = std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld.addBody(Core::Math::Vector2(300,300), Core::Physics::ColliderType::RECT));
 
+	std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld.addBody(Core::Math::Vector2(500, 500), Core::Physics::ColliderType::RECT))->setSize(Core::Math::Vector2(100,100));
+
 	m_PhysicsRect->setMass(1);
 	m_PhysicsRect->setPosition(Core::Math::Vector2(300,300));
 	m_PhysicsRect->setSize(Core::Math::Vector2(40, 80));
 	m_PhysicsRect->setVelocity(Core::Math::Vector2(50, 0));
 	m_PhysicsRect->setGravity(Core::Math::Vector2(0, 100));
-
+	m_PhysicsRect->setOnCollisionFunction([&]()
+		{
+			m_Window->stroke(255, 0, 0, 255);
+		});
 
 }
 

@@ -22,7 +22,7 @@ void Core::AudioManager::playSound(std::string soundID)
 	{
 		if (std::get<0>(soundObj) == soundID)
 		{
-			std::get<2>(soundObj).play();
+			//std::get<2>(soundObj).play();
 		}
 	}
 }

@@ -4,6 +4,7 @@ Core::Physics::PhysicsBody::PhysicsBody()
 {
 	setMass(1);
 	setInertia(1);
+	m_OnCollision = [&]() {};
 }
 
 Core::Physics::PhysicsBody::PhysicsBody(Math::Vector2 position)
@@ -11,6 +12,7 @@ Core::Physics::PhysicsBody::PhysicsBody(Math::Vector2 position)
 	this->m_Position = position;
 	setMass(1);
 	setInertia(1);
+	m_OnCollision = [&]() {};
 }
 
 Core::Physics::PhysicsBody::~PhysicsBody()

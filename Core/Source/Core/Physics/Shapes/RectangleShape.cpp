@@ -10,6 +10,7 @@ Core::Physics::RectangleShape::RectangleShape(Math::Vector2 position, Math::Vect
 {
 	m_BodyType = ColliderType::RECT;
 	m_Size = size;
+	m_BoundingVolume = size;
 	calculateCorners();
 }
 
@@ -20,6 +21,7 @@ Core::Physics::RectangleShape::~RectangleShape()
 void Core::Physics::RectangleShape::setSize(Math::Vector2 size)
 {
 	m_Size = size;
+	m_BoundingVolume = size;
 	calculateCorners();
 }
 
