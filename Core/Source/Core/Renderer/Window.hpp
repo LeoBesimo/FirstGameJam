@@ -38,6 +38,7 @@ namespace Core
 
 		void zoomView(float zoomFactor);
 		void moveView(float offsetX, float offsetY);
+		void setView(float x, float y);
 
 	private:
 		unsigned int m_Width, m_Height;

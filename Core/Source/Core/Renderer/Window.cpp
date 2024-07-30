@@ -142,3 +142,8 @@ void Core::Window::moveView(float offsetX, float offsetY)
 	m_View.move(offsetX, offsetY);
 	m_Window.setView(m_View);
 }
+
+void Core::Window::setView(float x, float y)
+{
+	m_View.setCenter(x, y);
+}

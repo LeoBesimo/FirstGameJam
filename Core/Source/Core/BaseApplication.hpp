@@ -5,6 +5,7 @@
 
 #include "Renderer/Window.hpp"
 #include "Renderer/TextureLoader.hpp"	
+#include "Audio/AudioManager.hpp"
 #include "System/EventHandler.hpp"
 #include "Math/CoreMath.h"
 #include "Physics/Physics.hpp"
@@ -26,6 +27,7 @@ namespace Core
 		std::unique_ptr<Window> m_Window;
 		EventHandler m_EventHandler;
 		TextureLoader m_TextureLoader;
+		AudioManager m_AudioManager;
 
 		Math::Vector2 m_MousePosition;
 
