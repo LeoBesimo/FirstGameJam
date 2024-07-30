@@ -6,8 +6,7 @@ Game::Game()
 	m_TextureLoader.getSprite(m_testSprite, "test", 0, 0, 16, 32);
 	//m_testSprite = m_TextureLoader.getSprite("test", 0, 0, 16, 32);
 
-	m_AudioManager.loadSound("test", "Audio/testsound.wav");
-	//m_AudioManager.playSound(m_testSound, "test");
+	m_SoundManager.addSound("testSound", "Audio/testsound.wav", 10);
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::W, [&]()
 		{
@@ -36,13 +35,12 @@ Game::Game()
 	m_EventHandler.addMouseCallback(Core::Mouse::LEFT, [&]()
 		{
 			std::cout << "On Press Left\n";
-			m_AudioManager.playSound("test");
+			m_SoundManager.playSound("testSound");
 		});
 
 	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
 		{
 			std::cout << "On Hold Right\n";
-			m_AudioManager.playSound("test");
 		}, true);
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::SPACE, [&]()

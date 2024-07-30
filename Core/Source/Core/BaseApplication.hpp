@@ -29,7 +29,7 @@ namespace Core
 		std::unique_ptr<Window> m_Window;
 		EventHandler m_EventHandler;
 		TextureLoader m_TextureLoader;
-		AudioManager m_AudioManager;
+		SoundManager m_SoundManager;
 
 		Math::Vector2 m_MousePosition;
 

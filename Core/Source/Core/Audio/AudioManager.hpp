@@ -6,17 +6,30 @@
 
 namespace Core
 {
-	class AudioManager
+	class GameSound
 	{
 	public:
-		AudioManager() {};
 
-		void loadSound(std::string soundID, std::string path);
-		void playSound(std::string soundID);
+		GameSound(std::string soundID, std::string path);
+		~GameSound();
 
-	private:
+		std::string m_SoundID;
+		sf::SoundBuffer m_Buffer;
+		sf::Sound m_Sound;
 
-		std::vector<std::tuple<std::string, sf::SoundBuffer, sf::Sound>> m_SoundList;
+	};
+
+	class SoundManager
+	{
+	public:
+
+		SoundManager() {};
+		~SoundManager();
+
+		bool playSound(std::string soundID);
+		void addSound(std::string soundID, std::string path, int amount = 1);
+
+		std::vector<GameSound*> m_SoundList;
 
 	};
 }

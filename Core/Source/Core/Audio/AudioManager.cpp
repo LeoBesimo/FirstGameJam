@@ -1,28 +1,35 @@
 #include "AudioManager.hpp"
 
-void Core::AudioManager::loadSound(std::string soundID, std::string path)
-{
-	sf::SoundBuffer soundBuffer;
-	sf::Sound sound;
+Core::GameSound::GameSound(std::string soundID, std::string path) {
+	m_SoundID = soundID;
+	m_Buffer.loadFromFile(path);
+	m_Sound.setBuffer(m_Buffer);
+}
 
-	if (!soundBuffer.loadFromFile(path))
-	{
-		std::cout << "Error: Sound not found";
-	}
-	else
-	{
-		sound.setBuffer(soundBuffer);
-		m_SoundList.emplace_back(soundID, soundBuffer, sound);
+Core::GameSound::~GameSound() {
+
+}
+
+Core::SoundManager::~SoundManager() {
+	while (!m_SoundList.empty()) {
+		m_SoundList.pop_back();
 	}
 }
 
-void Core::AudioManager::playSound(std::string soundID)
-{
-	for (const auto& soundObj : m_SoundList)
-	{
-		if (std::get<0>(soundObj) == soundID)
-		{
-			//std::get<2>(soundObj).play();
+void Core::SoundManager::addSound(std::string soundID, std::string path, int amount) {
+	for (int i = 0; i != amount; i++) {
+		GameSound* gameSound = new GameSound(soundID, path);
+		m_SoundList.push_back(gameSound);
+	}
+}
+
+bool Core::SoundManager::playSound(std::string soundID) {
+	for (std::vector<int>::size_type i = 0; i != m_SoundList.size(); i++) {
+		if (m_SoundList[i]->m_SoundID == soundID && m_SoundList[i]->m_Sound.getStatus() == sf::SoundSource::Status::Stopped) {
+			m_SoundList[i]->m_Sound.play();
+			return true;
 		}
 	}
+
+	return false;
 }
