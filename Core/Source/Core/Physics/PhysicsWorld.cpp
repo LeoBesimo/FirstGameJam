@@ -7,11 +7,14 @@ void Core::Physics::PhysicsWorld::update(float dt)
 		m_Bodies[i]->update(dt);
 		for (unsigned int j = i + 1; j < m_Bodies.size(); j++)
 		{
-			Manifold m = boundingBoxCollision(m_Bodies[i], m_Bodies[j]);
-			if (m.colliding)
+			if (boundingBoxCollision(m_Bodies[i], m_Bodies[j]))
 			{
-				m.bodyA->m_OnCollision();
-				m.bodyB->m_OnCollision();
+				Manifold m = collide(m_Bodies[i], m_Bodies[j]);
+				if (m.colliding)
+				{
+					m.bodyA->m_OnCollision();
+					m.bodyB->m_OnCollision();
+				}
 			}
 		}
 	}

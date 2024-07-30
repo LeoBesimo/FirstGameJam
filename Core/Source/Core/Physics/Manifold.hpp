@@ -1,9 +1,6 @@
 #pragma once
 
-#include <memory>
-
 #include "Shapes/Shapes.hpp"
-#include "Core/Math/CoreMath.h"
 
 namespace Core::Physics
 {

@@ -3,6 +3,7 @@
 #include "Core/Math/CoreMath.h"
 #include <vector>
 #include <functional>
+#include <memory>
 
 namespace Core::Physics
 {
@@ -12,12 +13,12 @@ namespace Core::Physics
 		RECT
 	};
 
-
 	class PhysicsBody
 	{
 		friend class PhysicsWorld;
 
 	public:
+
 		PhysicsBody();
 		PhysicsBody(Math::Vector2 position);
 		~PhysicsBody();
