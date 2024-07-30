@@ -16,7 +16,7 @@ void Core::AudioManager::loadSound(std::string soundID, std::string path)
 	}
 }
 
-void Core::AudioManager::playSound(sf::Sound sound, std::string soundID)
+void Core::AudioManager::playSound(std::string soundID)
 {
 	for (const auto& soundObj : m_SoundList)
 	{
@@ -25,6 +25,4 @@ void Core::AudioManager::playSound(sf::Sound sound, std::string soundID)
 			std::get<2>(soundObj).play();
 		}
 	}
-
-	sound.play();
 }
