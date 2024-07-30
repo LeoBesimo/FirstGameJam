@@ -2,9 +2,18 @@
 
 void Core::Physics::PhysicsWorld::update(float dt)
 {
-	for (std::shared_ptr<PhysicsBody>& body : m_Bodies)
+	for (unsigned int i = 0; i < m_Bodies.size(); i++)
 	{
-		body->update(dt);
+		m_Bodies[i]->update(dt);
+		for (unsigned int j = i + 1; j < m_Bodies.size(); j++)
+		{
+			Manifold m = boundingBoxCollision(m_Bodies[i], m_Bodies[j]);
+			if (m.colliding)
+			{
+				//m.bodyA->m_OnCollision();
+				//m.bodyB->m_OnCollision();
+			}
+		}
 	}
 }
 
@@ -28,5 +37,10 @@ std::shared_ptr<Core::Physics::PhysicsBody> Core::Physics::PhysicsWorld::addBody
 
 void Core::Physics::PhysicsWorld::addBody(std::shared_ptr<PhysicsBody> body)
 {
-	m_Bodies.push_back(body);
+	m_Bodies.push_back(std::move(body));
+}
+
+std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsWorld::getBodies()
+{
+	return m_Bodies;
 }

@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "Shapes/Shapes.hpp"
+#include "CollisionDetection.hpp"
 
 namespace Core::Physics
 {
@@ -17,6 +18,8 @@ namespace Core::Physics
 
 		std::shared_ptr<PhysicsBody> addBody(Math::Vector2 position, ColliderType type);
 		void addBody(std::shared_ptr<PhysicsBody> body);
+
+		std::vector<std::shared_ptr<PhysicsBody>> getBodies();
 
 	private:
 		std::vector<std::shared_ptr<PhysicsBody>> m_Bodies;

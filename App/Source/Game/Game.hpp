@@ -16,5 +16,5 @@ private:
     sf::Sprite m_testSprite;
     sf::Sound m_testSound;
     
-    Core::Physics::RectangleShape m_PhysicsRect;
+    std::shared_ptr<Core::Physics::RectangleShape> m_PhysicsRect;
 };

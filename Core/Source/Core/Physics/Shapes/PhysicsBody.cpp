@@ -79,9 +79,24 @@ void Core::Physics::PhysicsBody::setInertia(float inertia)
 	else m_InvInertia = 1 / inertia;
 }
 
+void Core::Physics::PhysicsBody::setOnCollisionFunction(std::function<void()> onCollision)
+{
+	m_OnCollision = onCollision;
+}
+
+Core::Physics::ColliderType Core::Physics::PhysicsBody::getColliderType()
+{
+	return m_BodyType;
+}
+
 Core::Math::Vector2 Core::Physics::PhysicsBody::getGravity()
 {
 	return m_Gravity;
+}
+
+Core::Math::Vector2 Core::Physics::PhysicsBody::getBoundingVolume()
+{
+	return m_BoundingVolume;
 }
 
 Core::Math::Vector2 Core::Physics::PhysicsBody::getPosition()

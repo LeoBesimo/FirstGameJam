@@ -45,10 +45,35 @@ void Core::BaseApplication::run()
 		m_PhysicsWorld.update(deltaTime);
 		
 		update(deltaTime);
+		if (m_RenderPhysicsBodies) renderPhysicsBodies();
 		render();
 
 		m_Window->display();
 
 		deltaTime = deltaClock.restart().asSeconds();
+	}
+}
+
+void Core::BaseApplication::renderPhysicsBodies()
+{
+	std::vector<std::shared_ptr<Physics::PhysicsBody>> bodies = m_PhysicsWorld.getBodies();
+
+	for (std::shared_ptr<Physics::PhysicsBody> body : bodies)
+	{
+		switch (body->getColliderType())
+		{
+		case Physics::ColliderType::RECT:
+		{
+			std::vector<Math::Vector2> corners = std::dynamic_pointer_cast<Physics::RectangleShape>(body)->getCorners();
+			for (unsigned int i = 0; i < corners.size(); i++)
+			{
+				m_Window->line(corners[i].x, corners[i].y, corners[(i + 1) % corners.size()].x, corners[(i + 1) % corners.size()].y);
+			}
+			break;
+		}
+
+		default:
+			break;
+		}
 	}
 }

@@ -7,6 +7,7 @@ Game::Game()
 	//m_testSprite = m_TextureLoader.getSprite("test", 0, 0, 16, 32);
 
 	m_AudioManager.loadSound("test", "Audio/testsound.wav");
+	//m_AudioManager.playSound(m_testSound, "test");
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::W, [&]()
 		{
@@ -41,6 +42,7 @@ Game::Game()
 	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
 		{
 			std::cout << "On Hold Right\n";
+			m_AudioManager.playSound(m_testSound, "test");
 		}, true);
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::SPACE, [&]()
@@ -48,11 +50,17 @@ Game::Game()
 			std::cout << m_MousePosition.x << " " << m_MousePosition.y << "\n";
 		}, false);
 
-	m_PhysicsRect.setMass(1);
-	m_PhysicsRect.setPosition(Core::Math::Vector2(300,300));
-	m_PhysicsRect.setSize(Core::Math::Vector2(40, 80));
-	m_PhysicsRect.setVelocity(Core::Math::Vector2(50, 0));
-	m_PhysicsRect.setGravity(Core::Math::Vector2(0, 100));
+	//m_PhysicsRect = m_PhysicsWorld.addBody(Core::Math::Vector2(300, 300), Core::Physics::ColliderType::RECT);
+
+
+	m_PhysicsRect = std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld.addBody(Core::Math::Vector2(300,300), Core::Physics::ColliderType::RECT));
+
+	m_PhysicsRect->setMass(1);
+	m_PhysicsRect->setPosition(Core::Math::Vector2(300,300));
+	m_PhysicsRect->setSize(Core::Math::Vector2(40, 80));
+	m_PhysicsRect->setVelocity(Core::Math::Vector2(50, 0));
+	m_PhysicsRect->setGravity(Core::Math::Vector2(0, 100));
+
 
 }
 
@@ -63,20 +71,13 @@ Game::~Game()
 void Game::update(float dt)
 {
 	BaseApplication::update(dt);
+	m_PhysicsRect->setPosition(m_MousePosition);
 	//std::cout << "From Derived Class\n";$
-	m_PhysicsRect.update(dt);
 }
 
 void Game::render()
 {
-	m_Window->line(900, 100, 300, 800);
-
-	std::vector<Core::Math::Vector2> corners = m_PhysicsRect.getCorners();
-
-	for (unsigned int i = 0; i < corners.size(); i++)
-	{
-		m_Window->line(corners[i].x, corners[i].y, corners[(i + 1) % corners.size()].x, corners[(i + 1) % corners.size()].y);
-	}
+	m_Window->line(900, 100, 300, 800);	
 
 	m_Window->loadSpritesheet("Textures/testcharacter.png");
 	m_Window->loadTexture(0, 0, 16, 32);

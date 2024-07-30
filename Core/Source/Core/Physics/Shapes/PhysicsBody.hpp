@@ -2,6 +2,7 @@
 
 #include "Core/Math/CoreMath.h"
 #include <vector>
+#include <functional>
 
 namespace Core::Physics
 {
@@ -14,6 +15,8 @@ namespace Core::Physics
 
 	class PhysicsBody
 	{
+		friend class PhysicsWorld;
+
 	public:
 		PhysicsBody();
 		PhysicsBody(Math::Vector2 position);
@@ -34,9 +37,13 @@ namespace Core::Physics
 		void setMass(float mass);
 		void setInertia(float inertia);
 
+		void setOnCollisionFunction(std::function<void()> onCollision);
+
 		//Getters
+		ColliderType getColliderType();
 
 		Math::Vector2 getGravity();
+		Math::Vector2 getBoundingVolume();
 		Math::Vector2 getPosition();
 		Math::Vector2 getVelocity();
 		Math::Vector2 getAcceleration();
@@ -49,12 +56,13 @@ namespace Core::Physics
 		float getInverseMass();
 		float getInertia();
 		float getInverseInertia();
-		
+
 
 	protected:
 		ColliderType m_BodyType;
 
 		Math::Vector2 m_Gravity;
+		Math::Vector2 m_BoundingVolume;
 
 		Math::Vector2 m_Position;
 		Math::Vector2 m_Velocity;
@@ -68,5 +76,7 @@ namespace Core::Physics
 		float m_InvMass;
 		float m_Inertia;
 		float m_InvInertia;
+
+		std::function<void()> m_OnCollision;
 	};
 }

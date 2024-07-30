@@ -23,6 +23,8 @@ namespace Core
 		void run();
 
 	protected:
+
+		bool m_RenderPhysicsBodies = true;
 		
 		std::unique_ptr<Window> m_Window;
 		EventHandler m_EventHandler;
@@ -32,6 +34,9 @@ namespace Core
 		Math::Vector2 m_MousePosition;
 
 		Physics::PhysicsWorld m_PhysicsWorld;
+
+	private:
+		void renderPhysicsBodies();
 
 	};
 }
