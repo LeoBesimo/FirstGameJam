@@ -51,7 +51,7 @@ namespace Core::Physics
 		float getInverseInertia();
 		
 
-	private:
+	protected:
 		ColliderType m_BodyType;
 
 		Math::Vector2 m_Gravity;

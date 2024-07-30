@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Core::BaseApplication">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAgAAgAAAAAAAAAAgAEAAACAAAAAAAAAACAAUAAA=</HashCode>
+      <FileName>Source\Core\BaseApplication.hpp</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_PhysicsWorld" />
+      <Field Name="m_EventHandler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Core::Physics::PhysicsWorld">
+    <Position X="0.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAgAAAAAAAAAAAQAAAAAAAAAAAAAAAAECAA=</HashCode>
+      <FileName>Source\Core\Physics\PhysicsWorld.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::EventHandler">
+    <Position X="5.5" Y="0.75" Width="2.5" />
+    <NestedTypes>
+      <Struct Name="Core::EventHandler::KeyboardState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Source\Core\System\EventHandler.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="Core::EventHandler::MouseState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Source\Core\System\EventHandler.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ECoAgAAAAgAAAAEAAAAAAAIBAAAAAAAAAEACJCAEAAA=</HashCode>
+      <FileName>Source\Core\System\EventHandler.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

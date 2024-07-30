@@ -14,9 +14,13 @@ namespace Core::Physics
 
 		void setSize(Math::Vector2 size);
 
+		std::vector<Math::Vector2> getCorners();
+
 	private:
 		std::vector<Math::Vector2> m_Corners;
 		 
 		Math::Vector2 m_Size;
+
+		void calculateCorners();
 	};
 }
