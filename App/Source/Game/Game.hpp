@@ -14,7 +14,6 @@ public:
 
 private:
     sf::Sprite m_testSprite;
-    sf::Sound m_testSound;
     
     std::shared_ptr<Core::Physics::RectangleShape> m_PhysicsRect;
 };
