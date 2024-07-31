@@ -21,15 +21,22 @@ Core::Physics::PhysicsBody::~PhysicsBody()
 
 void Core::Physics::PhysicsBody::update(float dt)
 {	
-	m_Acceleration += m_Gravity * m_InvMass;
+	m_Force += m_Gravity;
+	m_Acceleration += m_Force * m_InvMass;
 	m_Velocity += m_Acceleration * dt;
 	m_Position += m_Velocity * dt;
 
 	m_AngularVelocity += m_AngularAcceleration * dt;
 	m_Angle += m_AngularVelocity * dt;
 
+	m_Force *= 0;
 	m_Acceleration *= 0;
 	m_AngularAcceleration *= 0;
+}
+
+void Core::Physics::PhysicsBody::addForce(Math::Vector2 force)
+{
+	m_Force += force;
 }
 
 void Core::Physics::PhysicsBody::setGravity(Math::Vector2 gravity)

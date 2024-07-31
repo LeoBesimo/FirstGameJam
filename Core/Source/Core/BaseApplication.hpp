@@ -26,7 +26,7 @@ namespace Core
 
 		bool m_RenderPhysicsBodies = true;
 		
-		std::unique_ptr<Window> m_Window;
+		std::shared_ptr<Window> m_Window;
 		EventHandler m_EventHandler;
 		TextureLoader m_TextureLoader;
 		SoundManager m_SoundManager;

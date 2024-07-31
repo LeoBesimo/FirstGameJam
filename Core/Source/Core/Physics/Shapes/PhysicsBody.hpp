@@ -37,6 +37,8 @@ namespace Core::Physics
 
 		virtual void update(float dt);
 
+		void addForce(Math::Vector2 force);
+
 		//Setters
 		void setGravity(Math::Vector2 gravity);
 		void setPosition(Math::Vector2 position);
@@ -80,6 +82,7 @@ namespace Core::Physics
 		Math::Vector2 m_Position;
 		Math::Vector2 m_Velocity;
 		Math::Vector2 m_Acceleration;
+		Math::Vector2 m_Force;
 
 		float m_Angle;
 		float m_AngularVelocity;

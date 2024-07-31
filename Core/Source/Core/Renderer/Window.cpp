@@ -146,6 +146,7 @@ void Core::Window::moveView(float offsetX, float offsetY)
 void Core::Window::setView(float x, float y)
 {
 	m_View.setCenter(x, y);
+	m_Window.setView(m_View);
 }
 
 Core::Math::Vector2 Core::Window::mapPixelToCoords(float x, float y)

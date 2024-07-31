@@ -41,7 +41,7 @@ std::shared_ptr<Core::Physics::PhysicsBody> Core::Physics::PhysicsWorld::addBody
 
 void Core::Physics::PhysicsWorld::addBody(std::shared_ptr<PhysicsBody> body)
 {
-	m_Bodies.push_back(std::move(body));
+	m_Bodies.push_back(body);
 }
 
 std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsWorld::getBodies()
