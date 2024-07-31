@@ -4,7 +4,8 @@
 #include <iostream>
 
 #include "Renderer/Window.hpp"
-#include "Renderer/TextureLoader.hpp"	
+#include "Renderer/TextureLoader.hpp"
+#include "Renderer/AnimationManager.hpp"
 #include "Audio/AudioManager.hpp"
 #include "System/EventHandler.hpp"
 #include "Math/CoreMath.h"
@@ -29,6 +30,7 @@ namespace Core
 		std::shared_ptr<Window> m_Window;
 		EventHandler m_EventHandler;
 		TextureLoader m_TextureLoader;
+		AnimationManager m_AnimationManager;
 		SoundManager m_SoundManager;
 
 		Math::Vector2 m_MousePosition;

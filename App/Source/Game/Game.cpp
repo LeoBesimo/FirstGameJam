@@ -9,6 +9,15 @@ Game::Game()
 	m_TextureLoader.defineTexture("character_1", "facing_down", 48, 0, 16, 32);
 
 	m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_west");
+
+	m_AnimationManager.loadAnimationsheet("testanimation", "Textures/Animations/testanimation.png");
+
+	sf::Vector2u sheetSize(4, 1);
+	sf::Vector2u frameSize(16, 16);
+	sf::Vector2u currentFrame(0, 0);
+	sf::Vector2u startingFrame(0, 0);
+	sf::Vector2u endingFrame(3, 0);
+	m_AnimationManager.addAnimation("walking_animation", "testanimation", sheetSize, frameSize, currentFrame, startingFrame, endingFrame, 0);
 	
 	m_SoundManager.addSound("testSound", "Audio/testsound.wav", 10);
 	m_SoundManager.loadMusic("testMusic", "Audio/Music/testmusic.mp3");
