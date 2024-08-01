@@ -12,12 +12,10 @@ Game::Game()
 
 	m_AnimationManager.loadAnimationsheet("testanimation", "Textures/Animations/testanimation.png");
 
-	sf::Vector2u sheetSize(4, 1);
-	sf::Vector2u frameSize(16, 16);
-	sf::Vector2u currentFrame(0, 0);
-	sf::Vector2u startingFrame(0, 0);
-	sf::Vector2u endingFrame(3, 0);
-	m_AnimationManager.addAnimation("walking_animation", "testanimation", sheetSize, frameSize, currentFrame, startingFrame, endingFrame, 0);
+	sf::Vector2i sheetSize(4, 1);
+	sf::Vector2i frameSize(16, 16);
+	sf::Vector2i currentFrame(0, 0);
+	m_AnimationManager.addAnimation("walking_animation", "testanimation", sheetSize, frameSize, currentFrame, 0);
 	
 	m_SoundManager.addSound("testSound", "Audio/testsound.wav", 10);
 	m_SoundManager.loadMusic("testMusic", "Audio/Music/testmusic.mp3");
@@ -64,6 +62,7 @@ Game::Game()
 		{
 			std::cout << "On Press Left\n";
 			m_SoundManager.playSound("testSound");
+			m_AnimationManager.update("walking_animation", m_testAnimation);
 		});
 
 	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
@@ -118,6 +117,8 @@ void Game::render()
 	m_Window->loadTexture(0, 0, 16, 32);
 	m_testSprite.setColor(sf::Color(255, 0, 255, 128));
 	m_Window->drawSprite(m_testSprite, 300, 300, 10);
+
+	m_Window->drawSprite(m_testAnimation, 500, 500, 10);
 
 	//m_Window->rect(100, 100, 160, 320);
 

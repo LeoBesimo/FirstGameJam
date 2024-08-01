@@ -1,4 +1,5 @@
 #include "AnimationManager.hpp"
+#include <iostream>
 
 void Core::AnimationManager::loadAnimationsheet(std::string animationsheetID, std::string path)
 {
@@ -8,7 +9,7 @@ void Core::AnimationManager::loadAnimationsheet(std::string animationsheetID, st
 	m_Animationsheets[animationsheetID] = animationsheet;
 }
 
-void Core::AnimationManager::addAnimation(std::string animationID, std::string animationsheetID, sf::Vector2u sheetSize, sf::Vector2u frameSize, sf::Vector2u currentFrame, sf::Vector2u startingFrame, sf::Vector2u endingFrame, int frameRate)
+void Core::AnimationManager::addAnimation(std::string animationID, std::string animationsheetID, sf::Vector2i sheetSize, sf::Vector2i frameSize, sf::Vector2i currentFrame, int frameRate)
 {
 	m_Animations[animationID] = animationsheetID;
 
@@ -21,16 +22,36 @@ void Core::AnimationManager::addAnimation(std::string animationID, std::string a
 	m_CurrentFrames[animationID].x = currentFrame.x;
 	m_CurrentFrames[animationID].y = currentFrame.y;
 
-	m_StartingFrames[animationID].x = startingFrame.x;
-	m_StartingFrames[animationID].y = startingFrame.y;
-
-	m_EndingFrames[animationID].x = endingFrame.x;
-	m_EndingFrames[animationID].y = endingFrame.y;
-
 	m_FrameRates[animationID] = frameRate;
 }
 
 void Core::AnimationManager::update(std::string animationID, sf::Sprite& sprite)
 {
+	if (m_SheetSizes[animationID] != sf::Vector2i(0, 0)) {
+		
+		int positionX = m_FrameSizes[animationID].x * m_CurrentFrames[animationID].x;
+		int positionY = m_FrameSizes[animationID].y * m_CurrentFrames[animationID].y;
 
+		sf::IntRect frameRect(positionX, positionY, m_FrameSizes[animationID].x, m_FrameSizes[animationID].y);
+
+		sprite.setTexture(m_Animationsheets[m_Animations[animationID]]);
+		sprite.setTextureRect(frameRect);
+
+		if (m_CurrentFrames[animationID].x < m_SheetSizes[animationID].x - 1) {
+			m_CurrentFrames[animationID].x++;
+		}
+		else {
+			if (m_CurrentFrames[animationID].y < m_SheetSizes[animationID].y - 1) {
+				m_CurrentFrames[animationID].x = 0;
+				m_CurrentFrames[animationID].y++;
+			}
+			else {
+				m_CurrentFrames[animationID].x = 0;
+				m_CurrentFrames[animationID].y = 0;
+			}
+		}
+
+	} else {
+		std::cout << "Failed updating " << animationID << std::endl;
+	}
 }

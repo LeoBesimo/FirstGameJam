@@ -15,6 +15,7 @@ public:
 
 private:
     sf::Sprite m_testSprite;
+    sf::Sprite m_testAnimation;
     
     std::shared_ptr<Core::Physics::RectangleShape> m_PhysicsRect;
     Player m_Player;
