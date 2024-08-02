@@ -39,6 +39,11 @@ void Core::Physics::PhysicsBody::addForce(Math::Vector2 force)
 	m_Force += force;
 }
 
+void Core::Physics::PhysicsBody::setTag(Tag tag)
+{
+	m_Tag = tag;
+}
+
 void Core::Physics::PhysicsBody::setGravity(Math::Vector2 gravity)
 {
 	m_Gravity = gravity;
@@ -91,6 +96,11 @@ void Core::Physics::PhysicsBody::setInertia(float inertia)
 void Core::Physics::PhysicsBody::setOnCollisionFunction(std::function<void(Manifold m, std::shared_ptr<PhysicsBody> self)> onCollision)
 {
 	m_OnCollision = onCollision;
+}
+
+Core::Physics::Tag Core::Physics::PhysicsBody::getTag()
+{
+	return m_Tag;
 }
 
 Core::Physics::ColliderType Core::Physics::PhysicsBody::getColliderType()

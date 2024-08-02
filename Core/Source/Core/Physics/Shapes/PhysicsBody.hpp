@@ -4,6 +4,7 @@
 #include <vector>
 #include <functional>
 #include <memory>
+#include <string>
 
 namespace Core::Physics
 {
@@ -14,6 +15,17 @@ namespace Core::Physics
 	};
 
 	struct Manifold;
+
+	struct Tag
+	{
+		int tagId;
+		std::wstring tagName;
+
+		Tag(int id = 0, std::wstring name = L"") :
+			tagId(id), tagName(name)
+		{
+		}
+	};
 
 	class PhysicsBody
 	{
@@ -40,6 +52,8 @@ namespace Core::Physics
 		void addForce(Math::Vector2 force);
 
 		//Setters
+		void setTag(Tag tag);
+
 		void setGravity(Math::Vector2 gravity);
 		void setPosition(Math::Vector2 position);
 		void setVelocity(Math::Vector2 velocity);
@@ -55,6 +69,8 @@ namespace Core::Physics
 		void setOnCollisionFunction(std::function<void(Manifold data, std::shared_ptr<PhysicsBody> self)> onCollision);
 
 		//Getters
+		Tag getTag();
+
 		ColliderType getColliderType();
 
 		Math::Vector2 getGravity();
@@ -74,6 +90,8 @@ namespace Core::Physics
 
 
 	protected:
+		Tag m_Tag;
+
 		ColliderType m_BodyType;
 
 		Math::Vector2 m_Gravity;

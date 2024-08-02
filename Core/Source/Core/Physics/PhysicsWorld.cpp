@@ -44,7 +44,57 @@ void Core::Physics::PhysicsWorld::addBody(std::shared_ptr<PhysicsBody> body)
 	m_Bodies.push_back(body);
 }
 
+std::shared_ptr<Core::Physics::PhysicsBody> Core::Physics::PhysicsWorld::getBodyByTagID(int id)
+{
+	for (std::shared_ptr<PhysicsBody>& body : m_Bodies)
+	{
+		if (body->getTag().tagId == id)
+			return body;
+	}
+
+	return nullptr;
+}
+
+std::shared_ptr<Core::Physics::PhysicsBody> Core::Physics::PhysicsWorld::getBodyByTagName(std::wstring tagName)
+{
+	for (std::shared_ptr<PhysicsBody>& body : m_Bodies)
+	{
+		if (body->getTag().tagName == tagName)
+			return body;
+	}
+
+	return nullptr;
+}
+
+bool Core::Physics::PhysicsWorld::removeBodyByTagID(int id)
+{
+	for (int i = m_Bodies.size() - 1; i >= 0; i--)
+	{
+		if (m_Bodies[i]->getTag().tagId == id)
+		{
+			m_Bodies.erase(m_Bodies.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Core::Physics::PhysicsWorld::removeBodyByTagName(std::wstring tagName)
+{
+	for (int i = m_Bodies.size() - 1; i >= 0; i--)
+	{
+		if (m_Bodies[i]->getTag().tagName == tagName)
+		{
+			m_Bodies.erase(m_Bodies.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
+
 std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsWorld::getBodies()
 {
 	return m_Bodies;
 }
+
+
