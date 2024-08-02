@@ -18,5 +18,5 @@ private:
     sf::Sprite m_testAnimation;
     
     std::shared_ptr<Core::Physics::RectangleShape> m_PhysicsRect;
-    Player m_Player;
+    std::shared_ptr<Player> m_Player = std::make_shared<Player>(Player());
 };
