@@ -9,6 +9,8 @@ public:
 	Player();
 	~Player();
 
+	void update(float dt) override;
+
 	void render(std::shared_ptr<Core::Window> window);
 
 private:

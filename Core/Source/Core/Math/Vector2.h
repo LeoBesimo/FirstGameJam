@@ -124,6 +124,17 @@ namespace Core
 				return *this;
 			}
 
+			void limit(float length)
+			{
+				float lsqr = length * length;
+				if (lenSqr() > lsqr)
+				{
+					normalize();
+					x *= length;
+					y *= length;
+				}
+			}
+
 			float dot(const Vector2& a)
 			{
 				return x * a.x + y * a.y;

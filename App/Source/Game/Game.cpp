@@ -20,54 +20,40 @@ Game::Game()
 	m_SoundManager.addSound("testSound", "Audio/testsound.wav", 10);
 	m_SoundManager.loadMusic("testMusic", "Audio/Music/testmusic.mp3");
 	m_SoundManager.setMusicVolume(10);
-	m_SoundManager.playMusic("testMusic");
-
-	//m_Player.setPhysicsBody(std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld.addBody(Core::Math::Vector2(500, 500), Core::Physics::ColliderType::RECT)));
-	//m_Player.getPhysicsBody()->setSize(Core::Math::Vector2(64, 128));
+	//m_SoundManager.playMusic("testMusic");
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::W, [&]()
 		{
-			std::cout << "W key Pressed\n";
-			//m_Window->moveView(0, -0.1f);
-			m_Player->addForce(Core::Math::Vector2(0, -100));
+			m_Player->addForce(Core::Math::Vector2(0, -1000));
 			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_up");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::A, [&]()
 		{
-			std::cout << "A key Pressed\n";
-			//m_Window->moveView(-0.1f, 0);
-			m_Player->addForce(Core::Math::Vector2(-100, 0));
+			m_Player->addForce(Core::Math::Vector2(-1000, 0));
 			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_west");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::S, [&]()
 		{
-			std::cout << "S key Pressed\n";
-			//m_Window->moveView(0, 0.1f);
-			m_Player->addForce(Core::Math::Vector2(0, 100));
-
+			m_Player->addForce(Core::Math::Vector2(0, 1000));
 			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_down");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::D, [&]()
 		{
-			std::cout << "D key Pressed\n";
-			//m_Window->moveView(0.1f, 0);
-			m_Player->addForce(Core::Math::Vector2(100, 0));
+			m_Player->addForce(Core::Math::Vector2(1000, 0));
 			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_east");
 		});
 
 	m_EventHandler.addMouseCallback(Core::Mouse::LEFT, [&]()
 		{
-			std::cout << "On Press Left\n";
-			m_SoundManager.playSound("testSound");
+			//m_SoundManager.playSound("testSound");
 			m_AnimationManager.update("walking_animation", m_testAnimation);
 		});
 
 	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
 		{
-			std::cout << "On Hold Right\n";
 		}, true);
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::SPACE, [&]()
@@ -104,9 +90,8 @@ void Game::update(float dt)
 	BaseApplication::update(dt);
 	//m_PhysicsRect->setPosition(m_MousePosition);
 	//m_Window->setView(m_MousePosition.x, m_MousePosition.y);
+	m_Player->addForce((m_MousePosition - m_Player->getPosition()).normalize() * 1500);
 	m_Window->setView(m_Player->getPosition().x, m_Player->getPosition().y);
-	//m_Window->moveView(m_Player.getPhysicsBody()->getVelocity().x * dt, m_Player.getPhysicsBody()->getVelocity().y * dt);
-	//std::cout << "From Derived Class\n";$
 }
 
 void Game::render()
