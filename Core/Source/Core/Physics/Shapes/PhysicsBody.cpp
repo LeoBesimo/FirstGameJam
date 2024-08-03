@@ -93,6 +93,11 @@ void Core::Physics::PhysicsBody::setInertia(float inertia)
 	else m_InvInertia = 1 / inertia;
 }
 
+void Core::Physics::PhysicsBody::setTrigger(bool isTrigger)
+{
+	m_IsTrigger = isTrigger;
+}
+
 void Core::Physics::PhysicsBody::setOnCollisionFunction(std::function<void(Manifold m, std::shared_ptr<PhysicsBody> self)> onCollision)
 {
 	m_OnCollision = onCollision;
@@ -166,4 +171,9 @@ float Core::Physics::PhysicsBody::getInertia()
 float Core::Physics::PhysicsBody::getInverseInertia()
 {
 	return m_InvInertia;
+}
+
+bool Core::Physics::PhysicsBody::isTrigger()
+{
+	return m_IsTrigger;
 }

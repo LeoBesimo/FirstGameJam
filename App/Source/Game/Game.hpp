@@ -2,6 +2,7 @@
 
 #include <Core/Core.h>
 #include "Player.hpp"
+#include "Level/Wall.hpp"
 
 class Game
     : public Core::BaseApplication

@@ -66,6 +66,8 @@ namespace Core::Physics
 		void setMass(float mass);
 		void setInertia(float inertia);
 
+		void setTrigger(bool isTrigger);
+
 		void setOnCollisionFunction(std::function<void(Manifold data, std::shared_ptr<PhysicsBody> self)> onCollision);
 
 		//Getters
@@ -87,6 +89,8 @@ namespace Core::Physics
 		float getInverseMass();
 		float getInertia();
 		float getInverseInertia();
+
+		bool isTrigger();
 
 
 	protected:
@@ -110,6 +114,8 @@ namespace Core::Physics
 		float m_InvMass;
 		float m_Inertia;
 		float m_InvInertia;
+
+		bool m_IsTrigger = false;
 
 		std::function<void(Manifold m, std::shared_ptr<PhysicsBody> self)> m_OnCollision;
 	};
