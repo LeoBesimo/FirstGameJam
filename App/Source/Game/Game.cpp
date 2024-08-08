@@ -54,7 +54,7 @@ Game::Game()
 
 	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
 		{
-			m_ParticleManager.addParticle(m_Player->getPosition(), 20);
+			m_ParticleManager.addParticle(m_Player->getPosition(), 50);
 		}, true);
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::SPACE, [&]()

@@ -20,7 +20,6 @@ void Core::BaseApplication::render()
 void Core::BaseApplication::run()
 {
 	m_Window = std::unique_ptr<Core::Window>(new Core::Window(1000, 1000, "Test"));
-	m_ParticleManager = ParticleManager(m_Window);
 	sf::Clock deltaClock;
 	float deltaTime = 1.f;
 
