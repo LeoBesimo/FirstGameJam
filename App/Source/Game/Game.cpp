@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game()
+void Game::init()
 {
 	m_TextureLoader.loadSpritesheet("character_1", "Textures/testcharacter.png");
 	m_TextureLoader.defineTexture("character_1", "facing_east", 0, 0, 16, 32);
@@ -16,7 +16,7 @@ Game::Game()
 	sf::Vector2i frameSize(16, 16);
 	sf::Vector2i currentFrame(0, 0);
 	m_AnimationManager.addAnimation("walking_animation", "testanimation", sheetSize, frameSize, currentFrame, 0);
-	
+
 	m_SoundManager.addSound("testSound", "Audio/testsound.wav", 10);
 	m_SoundManager.loadMusic("testMusic", "Audio/Music/testmusic.mp3");
 	m_SoundManager.setMusicVolume(10);
@@ -65,13 +65,18 @@ Game::Game()
 	//m_PhysicsRect = m_PhysicsWorld.addBody(Core::Math::Vector2(300, 300), Core::Physics::ColliderType::RECT);
 
 
-	m_PhysicsRect = std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld.addBody(Core::Math::Vector2(300,300), Core::Physics::ColliderType::RECT));
+	m_PhysicsRect = std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld->addBody(Core::Math::Vector2(300, 300), Core::Physics::ColliderType::RECT));
 
-	std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld.addBody(Core::Math::Vector2(500, 500), Core::Physics::ColliderType::RECT))->setSize(Core::Math::Vector2(100,100));
-	m_PhysicsWorld.addBody(m_Player);
+
+	m_PhysicsWorld->addBody(m_Wall);
+
+	std::shared_ptr<Core::Physics::RectangleShape> box = std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld->addBody(Core::Math::Vector2(500, 500), Core::Physics::ColliderType::RECT));
+	box->setSize(Core::Math::Vector2(100, 100));
+	box->setTag(Core::Physics::Tag(0, L"box"));
+	m_PhysicsWorld->addBody(m_Player);
 
 	m_PhysicsRect->setMass(0);
-	m_PhysicsRect->setPosition(Core::Math::Vector2(300,300));
+	m_PhysicsRect->setPosition(Core::Math::Vector2(300, 300));
 	m_PhysicsRect->setSize(Core::Math::Vector2(40, 80));
 	//m_PhysicsRect->setVelocity(Core::Math::Vector2(50, 0));
 	m_PhysicsRect->setGravity(Core::Math::Vector2(0, 100));
@@ -80,10 +85,15 @@ Game::Game()
 			m_Window->stroke(255, 0, 0, 255);
 		});
 
-}
+	m_Room = Room(Core::Math::Vector2(500, 500), Core::Math::Vector2(1024, 1024), m_PhysicsWorld);
 
-Game::~Game()
-{
+	std::shared_ptr<Core::Physics::RectangleShape> colorTrigger = std::make_shared<Core::Physics::RectangleShape>(Core::Physics::RectangleShape(Core::Math::Vector2(700, 500), Core::Math::Vector2(50, 50)));
+	colorTrigger->setTrigger(true);
+	colorTrigger->setOnCollisionFunction([&](Core::Physics::Manifold manifold, std::shared_ptr<Core::Physics::PhysicsBody> self) {
+		if(manifold.bodyA->getTag().tagName == L"box" || manifold.bodyB->getTag().tagName == L"box")
+			m_Window->stroke(0, 0, 255);
+	});
+	m_PhysicsWorld->addBody(colorTrigger);
 }
 
 void Game::update(float dt)
@@ -91,8 +101,11 @@ void Game::update(float dt)
 	BaseApplication::update(dt);
 	//m_PhysicsRect->setPosition(m_MousePosition);
 	//m_Window->setView(m_MousePosition.x, m_MousePosition.y);
-	m_Player->addForce((m_MousePosition - m_Player->getPosition()).normalize() * 1500);
-	m_Window->setView(m_Player->getPosition().x, m_Player->getPosition().y);
+	if(playerFollowsMouse)
+	{
+		m_Player->addForce((m_MousePosition - m_Player->getPosition()).normalize() * 1500);
+		m_Window->setView(m_Player->getPosition().x, m_Player->getPosition().y);
+	}
 }
 
 void Game::render()

@@ -8,6 +8,10 @@ Core::BaseApplication::~BaseApplication()
 {
 }
 
+void Core::BaseApplication::init()
+{
+}
+
 void Core::BaseApplication::update(float dt)
 {
 	//std::cout << dt << "\n";
@@ -20,8 +24,11 @@ void Core::BaseApplication::render()
 void Core::BaseApplication::run()
 {
 	m_Window = std::unique_ptr<Core::Window>(new Core::Window(1000, 1000, "Test"));
+	m_PhysicsWorld = std::make_shared<Physics::PhysicsWorld>(Physics::PhysicsWorld());
 	sf::Clock deltaClock;
 	float deltaTime = 1.f;
+
+	init();
 
 	while (m_Window->isOpen())
 	{
@@ -42,7 +49,7 @@ void Core::BaseApplication::run()
 		m_EventHandler.update(events);
 		m_MousePosition = m_Window->mapPixelToCoords(m_EventHandler.m_MousePosition);
 		m_Window->stroke(0, 0, 0, 255);
-		m_PhysicsWorld.update(deltaTime);
+		m_PhysicsWorld->update(deltaTime);
 		m_ParticleManager.update(deltaTime);
 		update(deltaTime);
 		if (m_RenderPhysicsBodies) renderPhysicsBodies();
@@ -57,7 +64,7 @@ void Core::BaseApplication::run()
 
 void Core::BaseApplication::renderPhysicsBodies()
 {
-	std::vector<std::shared_ptr<Physics::PhysicsBody>> bodies = m_PhysicsWorld.getBodies();
+	std::vector<std::shared_ptr<Physics::PhysicsBody>> bodies = m_PhysicsWorld->getBodies();
 
 	for (std::shared_ptr<Physics::PhysicsBody> body : bodies)
 	{

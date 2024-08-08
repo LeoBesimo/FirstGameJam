@@ -20,6 +20,7 @@ namespace Core
 		BaseApplication();
 		~BaseApplication();
 
+		virtual void init();
 		virtual void update(float dt);
 		virtual void render();
 		void run();
@@ -36,7 +37,7 @@ namespace Core
 
 		Math::Vector2 m_MousePosition;
 
-		Physics::PhysicsWorld m_PhysicsWorld;
+		std::shared_ptr<Physics::PhysicsWorld> m_PhysicsWorld;
 
 		ParticleManager m_ParticleManager;
 

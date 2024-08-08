@@ -13,7 +13,7 @@ Player::~Player()
 void Player::update(float dt)
 {
 	RectangleShape::update(dt);
-	m_Velocity *= 0.999;
+	m_Velocity *= 0.95;
 	m_Velocity.limit(150);
 }
 

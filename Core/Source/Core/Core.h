@@ -6,7 +6,4 @@
 #include "Math/CoreMath.h"
 #include "Physics/Physics.hpp"
 
-namespace Core {
-
-	void PrintHelloWorld();
-}
+namespace Core {}
