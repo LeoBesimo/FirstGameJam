@@ -3,6 +3,8 @@
 Core::Window::Window(unsigned int width, unsigned int height, std::string title):
 	m_Width(width), m_Height(height), m_Window(sf::VideoMode(width,height), title)
 {
+
+	m_Window.setFramerateLimit(60);
 	m_Font.loadFromFile("Fonts/Roboto-Regular.ttf");
 }
 
@@ -147,6 +149,11 @@ void Core::Window::setView(float x, float y)
 {
 	m_View.setCenter(x, y);
 	m_Window.setView(m_View);
+}
+
+void Core::Window::draw(std::vector<sf::Vertex> vertexArray, sf::PrimitiveType type)
+{
+	m_Window.draw(&vertexArray[0], vertexArray.size(), type);
 }
 
 Core::Math::Vector2 Core::Window::mapPixelToCoords(float x, float y)

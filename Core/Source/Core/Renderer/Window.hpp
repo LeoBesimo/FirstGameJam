@@ -10,6 +10,8 @@ namespace Core
 {
 	class Window 
 	{
+		friend class ParticleManager;
+
 	public:
 		Window(unsigned int width = 100, unsigned int height = 100, std::string title = "Window");
 		~Window();
@@ -41,6 +43,8 @@ namespace Core
 		void zoomView(float zoomFactor);
 		void moveView(float offsetX, float offsetY);
 		void setView(float x, float y);
+
+		void draw(std::vector<sf::Vertex> vertexArray, sf::PrimitiveType type);
 
 		Math::Vector2 mapPixelToCoords(float x, float y);
 		Math::Vector2 mapPixelToCoords(Math::Vector2 point);

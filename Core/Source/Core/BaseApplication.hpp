@@ -10,6 +10,7 @@
 #include "System/EventHandler.hpp"
 #include "Math/CoreMath.h"
 #include "Physics/Physics.hpp"
+#include "System/ParticleManager.hpp"
 
 namespace Core
 {
@@ -36,6 +37,8 @@ namespace Core
 		Math::Vector2 m_MousePosition;
 
 		Physics::PhysicsWorld m_PhysicsWorld;
+
+		ParticleManager m_ParticleManager;
 
 	private:
 		void renderPhysicsBodies();

@@ -20,7 +20,7 @@ void Core::BaseApplication::render()
 void Core::BaseApplication::run()
 {
 	m_Window = std::unique_ptr<Core::Window>(new Core::Window(1000, 1000, "Test"));
-
+	m_ParticleManager = ParticleManager(m_Window);
 	sf::Clock deltaClock;
 	float deltaTime = 1.f;
 
@@ -44,9 +44,11 @@ void Core::BaseApplication::run()
 		m_MousePosition = m_Window->mapPixelToCoords(m_EventHandler.m_MousePosition);
 		m_Window->stroke(0, 0, 0, 255);
 		m_PhysicsWorld.update(deltaTime);
+		m_ParticleManager.update(deltaTime);
 		update(deltaTime);
 		if (m_RenderPhysicsBodies) renderPhysicsBodies();
 		render();
+		m_ParticleManager.render(m_Window);
 
 		m_Window->display();
 
