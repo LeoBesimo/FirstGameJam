@@ -1,6 +1,6 @@
 #pragma once
 #include <Core/Renderer/Window.hpp>
-#include <Core/Math/CoreMath.h>
+#include <Core/Math/CoreMath.hpp>
 #include <iostream>
 
 namespace Core

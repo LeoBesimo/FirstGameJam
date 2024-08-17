@@ -1,4 +1,4 @@
-#include "CoreMath.h"
+#include "CoreMath.hpp"
 
 namespace Core
 {

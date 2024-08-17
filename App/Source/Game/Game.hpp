@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core/Core.h>
+#include <Core/Core.hpp>
 #include "Player.hpp"
 #include "Level/Wall.hpp"
 #include "Level/Room.hpp"

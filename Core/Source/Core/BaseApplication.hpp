@@ -8,7 +8,7 @@
 #include "Renderer/AnimationManager.hpp"
 #include "Audio/AudioManager.hpp"
 #include "System/EventHandler.hpp"
-#include "Math/CoreMath.h"
+#include "Math/CoreMath.hpp"
 #include "Physics/Physics.hpp"
 #include "System/ParticleManager.hpp"
 

@@ -95,6 +95,19 @@ std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsW
 	return bodies;
 }
 
+std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsWorld::getBodiesByTagGroup(std::wstring tagGroup)
+{
+	std::vector<std::shared_ptr<PhysicsBody>> bodies;
+
+	for (std::shared_ptr<PhysicsBody>& body : m_Bodies)
+	{
+		if (body->getTag().tagGroup == tagGroup)
+			bodies.push_back(body);
+	}
+
+	return bodies;
+}
+
 bool Core::Physics::PhysicsWorld::removeBodyByTagID(int id)
 {
 	for (int i = m_Bodies.size() - 1; i >= 0; i--)

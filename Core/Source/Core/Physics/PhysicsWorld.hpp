@@ -23,6 +23,7 @@ namespace Core::Physics
 		std::shared_ptr<PhysicsBody> getBodyByTagName(std::wstring tagName);
 		std::vector<std::shared_ptr<PhysicsBody>> getBodiesByTagID(int id);
 		std::vector<std::shared_ptr<PhysicsBody>> getBodiesByTagName(std::wstring tagName);
+		std::vector<std::shared_ptr<PhysicsBody>> getBodiesByTagGroup(std::wstring tagGroup);
 
 		bool removeBodyByTagID(int id);
 		bool removeBodyByTagName(std::wstring tagName);

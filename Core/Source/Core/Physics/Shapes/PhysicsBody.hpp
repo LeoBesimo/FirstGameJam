@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core/Math/CoreMath.h"
+#include "Core/Math/CoreMath.hpp"
 #include <vector>
 #include <functional>
 #include <memory>
@@ -20,9 +20,11 @@ namespace Core::Physics
 	{
 		int tagId;
 		std::wstring tagName;
+		std::wstring tagGroup;
+		std::vector<std::tuple<std::wstring, std::wstring>> tagData;
 
-		Tag(int id = 0, std::wstring name = L"") :
-			tagId(id), tagName(name)
+		Tag(int id = 0, std::wstring name = L"", std::wstring group = L"") :
+			tagId(id), tagName(name), tagGroup(group)
 		{
 		}
 	};

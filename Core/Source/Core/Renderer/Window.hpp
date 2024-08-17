@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-#include "Core/Math/CoreMath.h"
+#include "Core/Math/CoreMath.hpp"
 
 namespace Core 
 {
