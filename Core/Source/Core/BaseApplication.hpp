@@ -12,6 +12,9 @@
 #include "Physics/Physics.hpp"
 #include "System/ParticleManager.hpp"
 
+#include "Core/ImGui/imgui.h"
+#include "Core/ImGui/imgui-SFML.h"
+
 namespace Core
 {
 	class BaseApplication
@@ -21,6 +24,7 @@ namespace Core
 		~BaseApplication();
 
 		virtual void init();
+		virtual void preUpdate();
 		virtual void update(float dt);
 		virtual void render();
 		void run();

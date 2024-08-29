@@ -166,3 +166,8 @@ Core::Math::Vector2 Core::Window::mapPixelToCoords(Math::Vector2 point)
 {
 	return mapPixelToCoords(point.x, point.y);
 }
+
+sf::RenderWindow& Core::Window::getSFMLWindow()
+{
+	return m_Window;
+}

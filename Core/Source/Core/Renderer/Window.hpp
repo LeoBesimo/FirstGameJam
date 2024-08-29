@@ -49,6 +49,8 @@ namespace Core
 		Math::Vector2 mapPixelToCoords(float x, float y);
 		Math::Vector2 mapPixelToCoords(Math::Vector2 point);
 
+		sf::RenderWindow& getSFMLWindow();
+
 	private:
 		unsigned int m_Width, m_Height;
 

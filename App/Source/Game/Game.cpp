@@ -96,6 +96,11 @@ void Game::init()
 	m_PhysicsWorld->addBody(colorTrigger);
 }
 
+void Game::preUpdate()
+{
+	m_Window->stroke((int)(m_Color[0] * 255), (int)(m_Color[1] * 255), (int)(m_Color[2] * 255));
+}
+
 void Game::update(float dt)
 {
 	BaseApplication::update(dt);
@@ -106,6 +111,12 @@ void Game::update(float dt)
 		m_Player->addForce((m_MousePosition - m_Player->getPosition()).normalize() * 1500);
 		m_Window->setView(m_Player->getPosition().x, m_Player->getPosition().y);
 	}
+
+	ImGui::Begin("Test Window");
+	ImGui::Text("Text in Window");
+	ImGui::ColorEdit3("Stroke Color", *&m_Color);
+	ImGui::End();
+
 }
 
 void Game::render()

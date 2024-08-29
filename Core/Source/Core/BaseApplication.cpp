@@ -12,6 +12,10 @@ void Core::BaseApplication::init()
 {
 }
 
+void Core::BaseApplication::preUpdate()
+{
+}
+
 void Core::BaseApplication::update(float dt)
 {
 	//std::cout << dt << "\n";
@@ -26,7 +30,10 @@ void Core::BaseApplication::run()
 	m_Window = std::unique_ptr<Core::Window>(new Core::Window(1000, 1000, "Test"));
 	m_PhysicsWorld = std::make_shared<Physics::PhysicsWorld>(Physics::PhysicsWorld());
 	sf::Clock deltaClock;
+	sf::Time sfTime = deltaClock.restart();
 	float deltaTime = 1.f;
+
+	ImGui::SFML::Init(m_Window->getSFMLWindow());
 
 	init();
 
@@ -36,6 +43,7 @@ void Core::BaseApplication::run()
 
 		for (sf::Event& event : events)
 		{
+			ImGui::SFML::ProcessEvent(event);
 			if (event.type == sf::Event::Closed)
 			{
 				m_Window->close();
@@ -46,20 +54,26 @@ void Core::BaseApplication::run()
 
 		m_Window->clear();
 
+		preUpdate();
+
+		ImGui::SFML::Update(m_Window->getSFMLWindow(), sfTime);
+
 		m_EventHandler.update(events);
 		m_MousePosition = m_Window->mapPixelToCoords(m_EventHandler.m_MousePosition);
-		m_Window->stroke(0, 0, 0, 255);
 		m_PhysicsWorld->update(deltaTime);
 		m_ParticleManager.update(deltaTime);
 		update(deltaTime);
 		if (m_RenderPhysicsBodies) renderPhysicsBodies();
 		render();
 		m_ParticleManager.render(m_Window);
-
+		ImGui::SFML::Render(m_Window->getSFMLWindow());
 		m_Window->display();
 
-		deltaTime = deltaClock.restart().asSeconds();
+		sfTime = deltaClock.restart();
+		deltaTime = sfTime.asSeconds();
 	}
+
+	ImGui::SFML::Shutdown();
 }
 
 void Core::BaseApplication::renderPhysicsBodies()

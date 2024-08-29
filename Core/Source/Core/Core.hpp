@@ -5,5 +5,7 @@
 #include "BaseApplication.hpp"
 #include "Math/CoreMath.hpp"
 #include "Physics/Physics.hpp"
+#include "Core/ImGui/imgui.h"
+#include "Core/ImGui/imgui-SFML.h"
 
 namespace Core {}
