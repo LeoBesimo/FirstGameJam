@@ -177,3 +177,20 @@ bool Core::Physics::PhysicsBody::isTrigger()
 {
 	return m_IsTrigger;
 }
+
+std::string Core::Physics::PhysicsBody::serialize()
+{
+	enterSubField("PhysicsBody");
+	serializeData("Angle", m_Angle);
+	serializeData("Angular Velocity", m_AngularVelocity);
+	serializeData("Angular Acceleration", m_AngularAcceleration);
+	enterSubField("Tag");
+	serializeData("Tag ID", m_Tag.tagId);
+	serializeData("Tag Name", m_Tag.tagName);
+	serializeData("Tag Group", m_Tag.tagGroup);
+	exitSubField();
+	serializeData("Mass", m_Mass);
+	serializeData("Inertia", m_Inertia);
+
+	return m_Data.str();
+}

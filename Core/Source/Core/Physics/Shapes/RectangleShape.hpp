@@ -18,6 +18,8 @@ namespace Core::Physics
 
 		void update(float dt) override;
 
+		//std::string serialize() override;
+
 	private:
 		std::vector<Math::Vector2> m_Corners;
 		 

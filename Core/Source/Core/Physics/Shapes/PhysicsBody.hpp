@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core/Math/CoreMath.hpp"
+#include "Core/System/ISerializable.hpp"
 #include <vector>
 #include <functional>
 #include <memory>
@@ -19,17 +20,18 @@ namespace Core::Physics
 	struct Tag
 	{
 		int tagId;
-		std::wstring tagName;
-		std::wstring tagGroup;
-		std::vector<std::tuple<std::wstring, std::wstring>> tagData;
+		std::string tagName;
+		std::string tagGroup;
+		std::vector<std::tuple<std::string, std::string>> tagData;
 
-		Tag(int id = 0, std::wstring name = L"", std::wstring group = L"") :
+		Tag(int id = 0, std::string name = "", std::string group = "") :
 			tagId(id), tagName(name), tagGroup(group)
 		{
 		}
 	};
 
-	class PhysicsBody
+	class PhysicsBody 
+		: public ISerializable
 	{
 		friend class PhysicsWorld;
 
@@ -94,6 +96,7 @@ namespace Core::Physics
 
 		bool isTrigger();
 
+		std::string serialize() override;
 
 	protected:
 		Tag m_Tag;

@@ -36,6 +36,12 @@ void Core::Physics::RectangleShape::update(float dt)
 	calculateCorners();
 }
 
+//std::string Core::Physics::RectangleShape::serialize()
+//{
+//	PhysicsBody::serialize();
+//	return m_Data.str();
+//}
+
 void Core::Physics::RectangleShape::calculateCorners()
 {
 	m_Corners.clear();

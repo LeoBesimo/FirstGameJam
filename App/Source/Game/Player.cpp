@@ -3,7 +3,7 @@
 Player::Player() :
 	Core::Physics::RectangleShape(Core::Math::Vector2(400, 400), Core::Math::Vector2(64, 128))
 {
-	m_Tag.tagName = L"Player";
+	m_Tag.tagName = "Player";
 }
 
 Player::~Player()

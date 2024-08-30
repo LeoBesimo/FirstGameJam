@@ -20,13 +20,13 @@ namespace Core::Physics
 		std::shared_ptr<PhysicsBody> addBody(Math::Vector2 position, ColliderType type);
 		void addBody(std::shared_ptr<PhysicsBody> body);
 		std::shared_ptr<PhysicsBody> getBodyByTagID(int id);
-		std::shared_ptr<PhysicsBody> getBodyByTagName(std::wstring tagName);
+		std::shared_ptr<PhysicsBody> getBodyByTagName(std::string tagName);
 		std::vector<std::shared_ptr<PhysicsBody>> getBodiesByTagID(int id);
-		std::vector<std::shared_ptr<PhysicsBody>> getBodiesByTagName(std::wstring tagName);
-		std::vector<std::shared_ptr<PhysicsBody>> getBodiesByTagGroup(std::wstring tagGroup);
+		std::vector<std::shared_ptr<PhysicsBody>> getBodiesByTagName(std::string tagName);
+		std::vector<std::shared_ptr<PhysicsBody>> getBodiesByTagGroup(std::string tagGroup);
 
 		bool removeBodyByTagID(int id);
-		bool removeBodyByTagName(std::wstring tagName);
+		bool removeBodyByTagName(std::string tagName);
 
 		std::vector<std::shared_ptr<PhysicsBody>> getBodies();
 

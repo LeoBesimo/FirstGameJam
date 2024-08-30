@@ -58,7 +58,7 @@ std::shared_ptr<Core::Physics::PhysicsBody> Core::Physics::PhysicsWorld::getBody
 	return nullptr;
 }
 
-std::shared_ptr<Core::Physics::PhysicsBody> Core::Physics::PhysicsWorld::getBodyByTagName(std::wstring tagName)
+std::shared_ptr<Core::Physics::PhysicsBody> Core::Physics::PhysicsWorld::getBodyByTagName(std::string tagName)
 {
 	for (std::shared_ptr<PhysicsBody>& body : m_Bodies)
 	{
@@ -82,7 +82,7 @@ std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsW
 	return bodies;
 }
 
-std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsWorld::getBodiesByTagName(std::wstring tagName)
+std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsWorld::getBodiesByTagName(std::string tagName)
 {
 	std::vector<std::shared_ptr<PhysicsBody>> bodies;
 
@@ -95,7 +95,7 @@ std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsW
 	return bodies;
 }
 
-std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsWorld::getBodiesByTagGroup(std::wstring tagGroup)
+std::vector<std::shared_ptr<Core::Physics::PhysicsBody>> Core::Physics::PhysicsWorld::getBodiesByTagGroup(std::string tagGroup)
 {
 	std::vector<std::shared_ptr<PhysicsBody>> bodies;
 
@@ -121,7 +121,7 @@ bool Core::Physics::PhysicsWorld::removeBodyByTagID(int id)
 	return false;
 }
 
-bool Core::Physics::PhysicsWorld::removeBodyByTagName(std::wstring tagName)
+bool Core::Physics::PhysicsWorld::removeBodyByTagName(std::string tagName)
 {
 	for (int i = m_Bodies.size() - 1; i >= 0; i--)
 	{

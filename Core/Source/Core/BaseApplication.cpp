@@ -33,7 +33,7 @@ void Core::BaseApplication::run()
 	sf::Time sfTime = deltaClock.restart();
 	float deltaTime = 1.f;
 
-	ImGui::SFML::Init(m_Window->getSFMLWindow());
+	if(!ImGui::SFML::Init(m_Window->getSFMLWindow())) return;
 
 	init();
 

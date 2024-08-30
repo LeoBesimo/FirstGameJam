@@ -72,7 +72,7 @@ void Game::init()
 
 	std::shared_ptr<Core::Physics::RectangleShape> box = std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld->addBody(Core::Math::Vector2(500, 500), Core::Physics::ColliderType::RECT));
 	box->setSize(Core::Math::Vector2(100, 100));
-	box->setTag(Core::Physics::Tag(0, L"box"));
+	box->setTag(Core::Physics::Tag(0, "box"));
 	m_PhysicsWorld->addBody(m_Player);
 
 	m_PhysicsRect->setMass(0);
@@ -90,10 +90,12 @@ void Game::init()
 	std::shared_ptr<Core::Physics::RectangleShape> colorTrigger = std::make_shared<Core::Physics::RectangleShape>(Core::Physics::RectangleShape(Core::Math::Vector2(700, 500), Core::Math::Vector2(50, 50)));
 	colorTrigger->setTrigger(true);
 	colorTrigger->setOnCollisionFunction([&](Core::Physics::Manifold manifold, std::shared_ptr<Core::Physics::PhysicsBody> self) {
-		if(manifold.bodyA->getTag().tagName == L"box" || manifold.bodyB->getTag().tagName == L"box")
+		if(manifold.bodyA->getTag().tagName == "box" || manifold.bodyB->getTag().tagName == "box")
 			m_Window->stroke(0, 0, 255);
 	});
 	m_PhysicsWorld->addBody(colorTrigger);
+
+	std::cout << m_Player->serialize();
 }
 
 void Game::preUpdate()

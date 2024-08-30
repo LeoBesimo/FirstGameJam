@@ -5,7 +5,7 @@ Wall::Wall(Core::Math::Vector2 position, Core::Math::Vector2 size) :
 {
 	setMass(0);
 	setInertia(0);
-	m_Tag.tagName = L"Wall";
+	m_Tag.tagName = "Wall";
 }
 
 Wall::~Wall()
