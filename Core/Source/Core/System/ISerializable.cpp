@@ -16,6 +16,11 @@ const Core::ISerializable& Core::ISerializable::operator=(const ISerializable& r
 	return *this;
 }
 
+void Core::ISerializable::clearData()
+{
+	m_Data.clear();
+}
+
 void Core::ISerializable::enterSubField(std::string subField)
 {
 	m_Data << std::string(m_SubFieldCount, ' ') << subField << ":\n";

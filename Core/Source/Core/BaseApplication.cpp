@@ -33,7 +33,7 @@ void Core::BaseApplication::run()
 	sf::Time sfTime = deltaClock.restart();
 	float deltaTime = 1.f;
 
-	if(!ImGui::SFML::Init(m_Window->getSFMLWindow())) return;
+	if (!ImGui::SFML::Init(m_Window->getSFMLWindow())) return;
 
 	init();
 
@@ -79,6 +79,7 @@ void Core::BaseApplication::run()
 void Core::BaseApplication::renderPhysicsBodies()
 {
 	std::vector<std::shared_ptr<Physics::PhysicsBody>> bodies = m_PhysicsWorld->getBodies();
+	std::vector<sf::Vertex> vertecies;
 
 	for (std::shared_ptr<Physics::PhysicsBody> body : bodies)
 	{
@@ -86,10 +87,22 @@ void Core::BaseApplication::renderPhysicsBodies()
 		{
 		case Physics::ColliderType::RECT:
 		{
+			sf::Vertex vertex;
+			Math::Vector4 color = body->getColor();
 			std::vector<Math::Vector2> corners = std::dynamic_pointer_cast<Physics::RectangleShape>(body)->getCorners();
 			for (unsigned int i = 0; i < corners.size(); i++)
 			{
-				m_Window->line(corners[i].x, corners[i].y, corners[(i + 1) % corners.size()].x, corners[(i + 1) % corners.size()].y);
+				if (m_PhysicsWireframe)
+				{
+					m_Window->line(corners[i].x, corners[i].y, corners[(i + 1) % corners.size()].x, corners[(i + 1) % corners.size()].y);
+				}
+				else
+				{
+					vertex.position.x = corners[i].x;
+					vertex.position.y = corners[i].y;
+					vertex.color = m_Window->getStrokeColor();//sf::Color(color.x, color.y, color.z, color.w);
+					vertecies.push_back(vertex);
+				}
 			}
 			break;
 		}
@@ -98,4 +111,6 @@ void Core::BaseApplication::renderPhysicsBodies()
 			break;
 		}
 	}
+	if (!vertecies.empty())
+		m_Window->draw(vertecies, sf::Quads);
 }

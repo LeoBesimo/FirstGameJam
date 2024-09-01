@@ -95,7 +95,23 @@ void Game::init()
 	});
 	m_PhysicsWorld->addBody(colorTrigger);
 
-	std::cout << m_Player->serialize();
+	std::string test = m_Player->serialize();;
+
+	//std::cout << test;
+
+	colorTrigger->setTag(Core::Physics::Tag(0, "colorTrigger", "trigger"));
+
+	Core::Serializer serializer;
+	serializer.addData(test);
+	serializer.addData(colorTrigger->serialize());
+	serializer.saveFile("test.bin");
+
+	std::vector<std::string> data = serializer.loadFile("test.bin");
+	for(std::string s : data)
+	{
+		std::cout << s;
+		std::cout << "test\n";
+	}
 }
 
 void Game::preUpdate()

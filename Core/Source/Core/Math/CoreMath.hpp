@@ -41,5 +41,23 @@ namespace Core
 
 		float distPointToLine(Vector2 point, Vector2 a, Vector2 b, Vector2* closest);
 
+		// ostream Operator Overloads
+		inline std::ostream& operator<<(std::ostream& os, const Vector2& vec2)
+		{
+			os << vec2.x << " " << vec2.y;
+			return os;
+		}
+
+		inline std::ostream& operator<<(std::ostream& os, const Vector3& vec3)
+		{
+			os << vec3.x << " " << vec3.y << " " << vec3.z;
+			return os;
+		}
+
+		inline std::ostream& operator<<(std::ostream& os, const Vector4& vec4)
+		{
+			os << vec4.w << " " << vec4.x << " " << vec4.y << " " << vec4.z;
+			return os;
+		}
 	}
 }

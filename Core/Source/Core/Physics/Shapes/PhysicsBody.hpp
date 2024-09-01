@@ -74,6 +74,8 @@ namespace Core::Physics
 
 		void setOnCollisionFunction(std::function<void(Manifold data, std::shared_ptr<PhysicsBody> self)> onCollision);
 
+		void setColor(Math::Vector4 color);
+
 		//Getters
 		Tag getTag();
 
@@ -96,6 +98,8 @@ namespace Core::Physics
 
 		bool isTrigger();
 
+		Math::Vector4 getColor();
+
 		std::string serialize() override;
 
 	protected:
@@ -110,6 +114,8 @@ namespace Core::Physics
 		Math::Vector2 m_Velocity;
 		Math::Vector2 m_Acceleration;
 		Math::Vector2 m_Force;
+
+		Math::Vector4 m_Color;
 
 		float m_Angle;
 		float m_AngularVelocity;

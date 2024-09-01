@@ -51,6 +51,9 @@ namespace Core
 
 		sf::RenderWindow& getSFMLWindow();
 
+		sf::Color getStrokeColor();
+		sf::Color getFillColor();
+
 	private:
 		unsigned int m_Width, m_Height;
 

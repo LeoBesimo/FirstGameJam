@@ -171,3 +171,13 @@ sf::RenderWindow& Core::Window::getSFMLWindow()
 {
 	return m_Window;
 }
+
+sf::Color Core::Window::getStrokeColor()
+{
+	return m_StrokeColor;
+}
+
+sf::Color Core::Window::getFillColor()
+{
+	return m_FillColor;
+}

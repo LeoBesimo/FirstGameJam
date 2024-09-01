@@ -7,5 +7,6 @@
 #include "Physics/Physics.hpp"
 #include "Core/ImGui/imgui.h"
 #include "Core/ImGui/imgui-SFML.h"
+#include "System/Serializer.hpp"
 
 namespace Core {}

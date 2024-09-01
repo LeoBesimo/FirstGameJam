@@ -32,6 +32,7 @@ namespace Core
 	protected:
 
 		bool m_RenderPhysicsBodies = true;
+		bool m_PhysicsWireframe = false;
 		
 		std::shared_ptr<Window> m_Window;
 		EventHandler m_EventHandler;

@@ -103,6 +103,11 @@ void Core::Physics::PhysicsBody::setOnCollisionFunction(std::function<void(Manif
 	m_OnCollision = onCollision;
 }
 
+void Core::Physics::PhysicsBody::setColor(Math::Vector4 color)
+{
+	m_Color = color;
+}
+
 Core::Physics::Tag Core::Physics::PhysicsBody::getTag()
 {
 	return m_Tag;
@@ -178,9 +183,21 @@ bool Core::Physics::PhysicsBody::isTrigger()
 	return m_IsTrigger;
 }
 
+Core::Math::Vector4 Core::Physics::PhysicsBody::getColor()
+{
+	return m_Color;
+}
+
 std::string Core::Physics::PhysicsBody::serialize()
 {
 	enterSubField("PhysicsBody");
+	serializeData("ColliderType", (int)m_BodyType);
+	serializeData("Gravity", m_Gravity);
+	serializeData("Bounding Volume", m_BoundingVolume);
+	serializeData("Position", m_Position);
+	serializeData("Velocity", m_Velocity);
+	serializeData("Acceleration", m_Acceleration);
+	serializeData("Force", m_Force);
 	serializeData("Angle", m_Angle);
 	serializeData("Angular Velocity", m_AngularVelocity);
 	serializeData("Angular Acceleration", m_AngularAcceleration);
@@ -191,6 +208,8 @@ std::string Core::Physics::PhysicsBody::serialize()
 	exitSubField();
 	serializeData("Mass", m_Mass);
 	serializeData("Inertia", m_Inertia);
+	serializeData("Is Trigger", m_IsTrigger);
+	serializeData("Color", m_Color);
 
 	return m_Data.str();
 }

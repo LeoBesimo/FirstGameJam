@@ -18,6 +18,8 @@ namespace Core
 		ISerializable(const ISerializable& orig);
 		const ISerializable& operator=(const ISerializable& rhs);
 
+		void clearData();
+
 		void enterSubField(std::string subField);
 		void serializeData(std::string id, Streamable auto data)
 		{
