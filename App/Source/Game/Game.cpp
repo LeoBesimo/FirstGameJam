@@ -135,6 +135,8 @@ void Game::update(float dt)
 	ImGui::ColorEdit3("Stroke Color", *&m_Color);
 	ImGui::End();
 
+	ImGui::ShowDemoWindow();
+
 }
 
 void Game::render()
