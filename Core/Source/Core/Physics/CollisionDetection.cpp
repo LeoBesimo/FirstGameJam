@@ -245,6 +245,21 @@ Core::Physics::Manifold Core::Physics::rectRectCollision(std::shared_ptr<Rectang
 	return m;
 }
 
+Core::Physics::Manifold Core::Physics::rectLineCollision(std::shared_ptr<RectangleShape> bodyA, std::shared_ptr<LineShape> bodyB)
+{
+	return Manifold();
+}
+
+Core::Physics::Manifold Core::Physics::rectCircleCollision(std::shared_ptr<RectangleShape> bodyA, std::shared_ptr<CircleShape> bodyB)
+{
+	return Manifold();
+}
+
+Core::Physics::Manifold Core::Physics::lineCircleCollision(std::shared_ptr<LineShape> bodyA, std::shared_ptr<CircleShape> bodyB)
+{
+	return Manifold();
+}
+
 Core::Physics::Manifold Core::Physics::collide(std::shared_ptr<PhysicsBody> bodyA, std::shared_ptr<PhysicsBody> bodyB)
 {
 	switch (bodyA->getColliderType())

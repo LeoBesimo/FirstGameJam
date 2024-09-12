@@ -2,6 +2,11 @@
 
 void Game::init()
 {
+
+	m_Window->setResolution(1600, 1600);
+	m_Window->setViewSize(800, 800);
+	m_Window->setView(400,400);
+
 	m_TextureLoader.loadSpritesheet("character_1", "Textures/testcharacter.png");
 	m_TextureLoader.defineTexture("character_1", "facing_east", 0, 0, 16, 32);
 	m_TextureLoader.defineTexture("character_1", "facing_west", 32, 0, 16, 32);
@@ -49,7 +54,7 @@ void Game::init()
 	m_EventHandler.addMouseCallback(Core::Mouse::LEFT, [&]()
 		{
 			//m_SoundManager.playSound("testSound");
-			m_AnimationManager.update("walking_animation", m_testAnimation);
+			//m_AnimationManager.update("walking_animation", m_testAnimation);
 		});
 
 	m_EventHandler.addMouseCallback(Core::Mouse::RIGHT, [&]()
@@ -60,6 +65,11 @@ void Game::init()
 	m_EventHandler.addKeyCallback(Core::Keyboard::SPACE, [&]()
 		{
 			std::cout << m_MousePosition.x << " " << m_MousePosition.y << "\n";
+		}, false);
+
+	m_EventHandler.addKeyCallback(Core::Keyboard::F, [&]()
+		{
+			m_Window->setFullscreen(!m_Window->isFullscreen());
 		}, false);
 
 	//m_PhysicsRect = m_PhysicsWorld.addBody(Core::Math::Vector2(300, 300), Core::Physics::ColliderType::RECT);
@@ -90,7 +100,7 @@ void Game::init()
 	std::shared_ptr<Core::Physics::RectangleShape> colorTrigger = std::make_shared<Core::Physics::RectangleShape>(Core::Physics::RectangleShape(Core::Math::Vector2(700, 500), Core::Math::Vector2(50, 50)));
 	colorTrigger->setTrigger(true);
 	colorTrigger->setOnCollisionFunction([&](Core::Physics::Manifold manifold, std::shared_ptr<Core::Physics::PhysicsBody> self) {
-		if(manifold.bodyA->getTag().tagName == "box" || manifold.bodyB->getTag().tagName == "box")
+		if (manifold.bodyA->getTag().tagName == "box" || manifold.bodyB->getTag().tagName == "box")
 			m_Window->stroke(0, 0, 255);
 	});
 	m_PhysicsWorld->addBody(colorTrigger);
@@ -107,7 +117,7 @@ void Game::init()
 	serializer.saveFile("test.bin");
 
 	std::vector<std::string> data = serializer.loadFile("test.bin");
-	for(std::string s : data)
+	for (std::string s : data)
 	{
 		std::cout << s;
 		std::cout << "test\n";
@@ -124,13 +134,14 @@ void Game::update(float dt)
 	BaseApplication::update(dt);
 	//m_PhysicsRect->setPosition(m_MousePosition);
 	//m_Window->setView(m_MousePosition.x, m_MousePosition.y);
-	if(playerFollowsMouse)
+	if (playerFollowsMouse)
 	{
 		m_Player->addForce((m_MousePosition - m_Player->getPosition()).normalize() * 1500);
 		m_Window->setView(m_Player->getPosition().x, m_Player->getPosition().y);
 	}
 
 	ImGui::Begin("Test Window");
+	ImGui::SetWindowSize(ImVec2(600, 600));
 	ImGui::Text("Text in Window");
 	ImGui::ColorEdit3("Stroke Color", *&m_Color);
 	ImGui::End();
@@ -141,7 +152,7 @@ void Game::update(float dt)
 
 void Game::render()
 {
-	m_Window->line(900, 100, 300, 800);	
+	m_Window->line(900, 100, 300, 800);
 
 	m_Window->loadSpritesheet("Textures/testcharacter.png");
 	m_Window->loadTexture(0, 0, 16, 32);

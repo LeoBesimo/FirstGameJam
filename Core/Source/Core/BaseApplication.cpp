@@ -76,6 +76,11 @@ void Core::BaseApplication::run()
 	ImGui::SFML::Shutdown();
 }
 
+void Core::BaseApplication::close()
+{
+	m_Window->close();
+}
+
 void Core::BaseApplication::renderPhysicsBodies()
 {
 	std::vector<std::shared_ptr<Physics::PhysicsBody>> bodies = m_PhysicsWorld->getBodies();
@@ -94,7 +99,14 @@ void Core::BaseApplication::renderPhysicsBodies()
 			{
 				if (m_PhysicsWireframe)
 				{
-					m_Window->line(corners[i].x, corners[i].y, corners[(i + 1) % corners.size()].x, corners[(i + 1) % corners.size()].y);
+					vertex.position.x = corners[i].x;
+					vertex.position.y = corners[i].y;
+					vertex.color = m_Window->getStrokeColor();
+					vertecies.push_back(vertex);
+					vertex.position.x = corners[(i + 1) % corners.size()].x;
+					vertex.position.y = corners[(i + 1) % corners.size()].y;
+					vertecies.push_back(vertex);
+					//m_Window->line(corners[i].x, corners[i].y, corners[(i + 1) % corners.size()].x, corners[(i + 1) % corners.size()].y);
 				}
 				else
 				{
@@ -111,6 +123,8 @@ void Core::BaseApplication::renderPhysicsBodies()
 			break;
 		}
 	}
-	if (!vertecies.empty())
+	if (!vertecies.empty() && !m_PhysicsWireframe)
 		m_Window->draw(vertecies, sf::Quads);
+	else if (!vertecies.empty() && m_PhysicsWireframe)
+		m_Window->draw(vertecies, sf::Lines);
 }

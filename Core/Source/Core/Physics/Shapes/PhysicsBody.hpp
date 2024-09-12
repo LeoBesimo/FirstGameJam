@@ -12,7 +12,9 @@ namespace Core::Physics
 
 	enum class ColliderType
 	{
-		RECT
+		RECT,
+		LINE,
+		CIRCLE
 	};
 
 	struct Manifold;

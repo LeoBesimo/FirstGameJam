@@ -1,7 +1,7 @@
 #include "Window.hpp"
 
-Core::Window::Window(unsigned int width, unsigned int height, std::string title):
-	m_Width(width), m_Height(height), m_Window(sf::VideoMode(width,height), title)
+Core::Window::Window(unsigned int width, unsigned int height, std::string title) :
+	m_Width(width), m_Height(height), m_Window(sf::VideoMode(width, height), title), m_Title(title)
 {
 
 	m_Window.setFramerateLimit(60);
@@ -151,9 +151,50 @@ void Core::Window::setView(float x, float y)
 	m_Window.setView(m_View);
 }
 
+void Core::Window::setViewSize(uint16_t width, uint16_t height)
+{
+	m_View.setSize(width, height);
+	m_Window.setView(m_View);
+}
+
 void Core::Window::draw(std::vector<sf::Vertex> vertexArray, sf::PrimitiveType type)
 {
 	m_Window.draw(&vertexArray[0], vertexArray.size(), type);
+}
+
+void Core::Window::setFullscreen(bool fullScreen)
+{
+	m_Fullscreen = fullScreen;
+	if (m_Fullscreen)
+	{
+		// sf::VideoMode::getFullscreenModes()[0]
+		m_Window.create(sf::VideoMode(m_Width,m_Height), m_Title, sf::Style::Fullscreen);
+	}
+	else
+	{
+		m_Window.create(sf::VideoMode(m_Width, m_Height), m_Title);
+	}
+
+	//m_View = m_Window.getDefaultView();
+	m_Window.setView(m_View);
+}
+
+void Core::Window::setResolution(unsigned int width, unsigned int height)
+{
+	if (m_Fullscreen)
+		m_Window.create(sf::VideoMode(width, height), m_Title, sf::Style::Fullscreen);
+	else
+		m_Window.create(sf::VideoMode(width, height), m_Title);
+
+	m_Width = width;
+	m_Height = height;
+
+	m_View = m_Window.getDefaultView();
+}
+
+bool Core::Window::isFullscreen()
+{
+	return m_Fullscreen;
 }
 
 Core::Math::Vector2 Core::Window::mapPixelToCoords(float x, float y)

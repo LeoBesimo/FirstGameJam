@@ -43,8 +43,13 @@ namespace Core
 		void zoomView(float zoomFactor);
 		void moveView(float offsetX, float offsetY);
 		void setView(float x, float y);
+		void setViewSize(uint16_t width, uint16_t height);
 
 		void draw(std::vector<sf::Vertex> vertexArray, sf::PrimitiveType type);
+		void setFullscreen(bool fullScreen);
+		void setResolution(unsigned int width, unsigned int height);
+
+		bool isFullscreen();
 
 		Math::Vector2 mapPixelToCoords(float x, float y);
 		Math::Vector2 mapPixelToCoords(Math::Vector2 point);
@@ -75,5 +80,8 @@ namespace Core
 		sf::Text m_Text;
 		sf::Font m_Font;
 
+		std::string m_Title;
+
+		bool m_Fullscreen = false;
 	};
 }

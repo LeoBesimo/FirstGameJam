@@ -28,11 +28,12 @@ namespace Core
 		virtual void update(float dt);
 		virtual void render();
 		void run();
+		void close();
 
 	protected:
 
 		bool m_RenderPhysicsBodies = true;
-		bool m_PhysicsWireframe = false;
+		bool m_PhysicsWireframe = true;
 		
 		std::shared_ptr<Window> m_Window;
 		EventHandler m_EventHandler;

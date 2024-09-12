@@ -13,6 +13,9 @@ namespace Core::Physics
 
 	bool boundingBoxCollision(std::shared_ptr<PhysicsBody> bodyA, std::shared_ptr<PhysicsBody> bodyB);
 	Manifold rectRectCollision(std::shared_ptr<RectangleShape> bodyA, std::shared_ptr<RectangleShape> bodyB);
+	Manifold rectLineCollision(std::shared_ptr<RectangleShape> bodyA, std::shared_ptr<LineShape> bodyB);
+	Manifold rectCircleCollision(std::shared_ptr<RectangleShape> bodyA, std::shared_ptr<CircleShape> bodyB);
+	Manifold lineCircleCollision(std::shared_ptr<LineShape> bodyA, std::shared_ptr<CircleShape> bodyB);
 
 	Manifold collide(std::shared_ptr<PhysicsBody> bodyA, std::shared_ptr<PhysicsBody> bodyB);
 }
