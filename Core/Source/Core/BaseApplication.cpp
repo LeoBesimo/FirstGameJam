@@ -119,6 +119,14 @@ void Core::BaseApplication::renderPhysicsBodies()
 			break;
 		}
 
+		case Physics::ColliderType::CIRCLE:
+		{
+			float radius = std::dynamic_pointer_cast<Physics::CircleShape>(body)->getRadius();
+			m_Window->circle(body->getPosition().x, body->getPosition().y, radius);
+			break;
+		}
+		
+
 		default:
 			break;
 		}

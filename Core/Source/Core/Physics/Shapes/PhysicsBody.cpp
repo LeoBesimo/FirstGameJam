@@ -44,6 +44,11 @@ void Core::Physics::PhysicsBody::setTag(Tag tag)
 	m_Tag = tag;
 }
 
+void Core::Physics::PhysicsBody::setMaterial(Material material)
+{
+	m_Material = material;
+}
+
 void Core::Physics::PhysicsBody::setGravity(Math::Vector2 gravity)
 {
 	m_Gravity = gravity;
@@ -116,6 +121,11 @@ Core::Physics::Tag Core::Physics::PhysicsBody::getTag()
 Core::Physics::ColliderType Core::Physics::PhysicsBody::getColliderType()
 {
 	return m_BodyType;
+}
+
+Core::Physics::Material Core::Physics::PhysicsBody::getMaterial()
+{
+	return m_Material;
 }
 
 Core::Math::Vector2 Core::Physics::PhysicsBody::getGravity()

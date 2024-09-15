@@ -145,7 +145,6 @@ namespace Core
 			{
 				return x * a.y - y * a.x;
 			}
-
 		};
 	}
 }

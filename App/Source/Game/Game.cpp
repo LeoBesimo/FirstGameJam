@@ -3,7 +3,7 @@
 void Game::init()
 {
 
-	m_Window->setResolution(1600, 1600);
+	m_Window->setResolution(800, 800);
 	m_Window->setViewSize(800, 800);
 	m_Window->setView(400,400);
 
@@ -72,8 +72,16 @@ void Game::init()
 			m_Window->setFullscreen(!m_Window->isFullscreen());
 		}, false);
 
+	m_EventHandler.addKeyCallback(Core::Keyboard::ESCAPE, [&]()
+		{
+			m_Window->close();
+		},false);
+
 	//m_PhysicsRect = m_PhysicsWorld.addBody(Core::Math::Vector2(300, 300), Core::Physics::ColliderType::RECT);
 
+	m_CircleShape = std::make_shared<Core::Physics::CircleShape>(Core::Physics::CircleShape(Core::Math::Vector2(500, 500), 60));
+
+	m_PhysicsWorld->addBody(m_CircleShape);
 
 	m_PhysicsRect = std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld->addBody(Core::Math::Vector2(300, 300), Core::Physics::ColliderType::RECT));
 
@@ -144,6 +152,11 @@ void Game::update(float dt)
 	ImGui::SetWindowSize(ImVec2(600, 600));
 	ImGui::Text("Text in Window");
 	ImGui::ColorEdit3("Stroke Color", *&m_Color);
+	ImGui::Checkbox("PhysicsWireFrame", &m_PhysicsWireframe);
+	if (ImGui::Button("Toggle Fullscreen"))
+	{
+		m_Window->setFullscreen(!m_Window->isFullscreen());
+	}
 	ImGui::End();
 
 	ImGui::ShowDemoWindow();

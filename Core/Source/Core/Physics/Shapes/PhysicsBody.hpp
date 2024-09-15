@@ -6,6 +6,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include "Materials.hpp"
 
 namespace Core::Physics
 {
@@ -60,6 +61,8 @@ namespace Core::Physics
 		//Setters
 		void setTag(Tag tag);
 
+		void setMaterial(Material material);
+
 		void setGravity(Math::Vector2 gravity);
 		void setPosition(Math::Vector2 position);
 		void setVelocity(Math::Vector2 velocity);
@@ -82,6 +85,8 @@ namespace Core::Physics
 		Tag getTag();
 
 		ColliderType getColliderType();
+
+		Material getMaterial();
 
 		Math::Vector2 getGravity();
 		Math::Vector2 getBoundingVolume();
@@ -108,6 +113,8 @@ namespace Core::Physics
 		Tag m_Tag;
 
 		ColliderType m_BodyType;
+
+		Material m_Material = Materials::DEFAULT;
 
 		Math::Vector2 m_Gravity;
 		Math::Vector2 m_BoundingVolume;
