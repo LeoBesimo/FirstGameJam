@@ -33,6 +33,8 @@ void Core::BaseApplication::run()
 	sf::Time sfTime = deltaClock.restart();
 	float deltaTime = 1.f;
 
+	m_Window->getSFMLWindow().setFramerateLimit(60);
+
 	if (!ImGui::SFML::Init(m_Window->getSFMLWindow())) return;
 
 	init();

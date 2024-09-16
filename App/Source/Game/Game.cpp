@@ -29,25 +29,25 @@ void Game::init()
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::W, [&]()
 		{
-			m_Player->addForce(Core::Math::Vector2(0, -1000));
+			m_Player->addForce(Core::Math::Vector2(0, -5000));
 			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_up");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::A, [&]()
 		{
-			m_Player->addForce(Core::Math::Vector2(-1000, 0));
+			m_Player->addForce(Core::Math::Vector2(-5000, 0));
 			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_west");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::S, [&]()
 		{
-			m_Player->addForce(Core::Math::Vector2(0, 1000));
+			m_Player->addForce(Core::Math::Vector2(0, 5000));
 			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_down");
 		});
 
 	m_EventHandler.addKeyCallback(Core::Keyboard::D, [&]()
 		{
-			m_Player->addForce(Core::Math::Vector2(1000, 0));
+			m_Player->addForce(Core::Math::Vector2(5000, 0));
 			m_TextureLoader.setTexture(m_testSprite, "character_1", "facing_east");
 		});
 
@@ -79,7 +79,19 @@ void Game::init()
 
 	//m_PhysicsRect = m_PhysicsWorld.addBody(Core::Math::Vector2(300, 300), Core::Physics::ColliderType::RECT);
 
-	m_CircleShape = std::make_shared<Core::Physics::CircleShape>(Core::Physics::CircleShape(Core::Math::Vector2(500, 500), 60));
+	m_CircleShape = std::make_shared<Core::Physics::CircleShape>(Core::Physics::CircleShape(Core::Math::Vector2(500, 300), 30));
+	//m_CircleShape->setTrigger(true);
+	m_CircleShape->setOnCollisionFunction([&](Core::Physics::Manifold data, std::shared_ptr<Core::Physics::PhysicsBody> self)
+		{
+			ImGui::Begin("Collision Data");
+			ImGui::Text("Contact %f, %f", data.contact.x, data.contact.y);
+			ImGui::Text("Penetration: %f", data.penetration);
+			ImGui::End();
+
+			m_Window->fill(255, 255, 0);
+			m_Window->circle(data.contact.x, data.contact.y, 5);
+			m_Window->fill();
+		});
 
 	m_PhysicsWorld->addBody(m_CircleShape);
 
@@ -135,6 +147,7 @@ void Game::init()
 void Game::preUpdate()
 {
 	m_Window->stroke((int)(m_Color[0] * 255), (int)(m_Color[1] * 255), (int)(m_Color[2] * 255));
+	m_Window->fill();
 }
 
 void Game::update(float dt)
@@ -149,10 +162,12 @@ void Game::update(float dt)
 	}
 
 	ImGui::Begin("Test Window");
-	ImGui::SetWindowSize(ImVec2(600, 600));
+	ImGui::SetWindowCollapsed(0);
 	ImGui::Text("Text in Window");
 	ImGui::ColorEdit3("Stroke Color", *&m_Color);
 	ImGui::Checkbox("PhysicsWireFrame", &m_PhysicsWireframe);
+	ImGui::Text("Framerate: %f", 1.f / dt);
+	ImGui::Text("Mouse Position: %f, %f", m_MousePosition.x, m_MousePosition.y);
 	if (ImGui::Button("Toggle Fullscreen"))
 	{
 		m_Window->setFullscreen(!m_Window->isFullscreen());

@@ -163,8 +163,8 @@ Core::Math::Vector2 Core::Physics::getContactLineRect(std::shared_ptr<RectangleS
 Core::Math::Vector2 Core::Physics::getContactCircleRect(std::shared_ptr<RectangleShape> bodyA, std::shared_ptr<CircleShape> bodyB)
 {
 	std::vector<Math::Vector2> corners = bodyA->getCorners();
-	Math::Vector2 pCenter = bodyB->getPosition();
-	Math::Vector2 cCenter = bodyA->getPosition();
+	Math::Vector2 pCenter = bodyA->getPosition();
+	Math::Vector2 cCenter = bodyB->getPosition();
 	float radius = bodyB->getRadius();
 	Math::Vector2 cp;
 

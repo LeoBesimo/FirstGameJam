@@ -18,6 +18,6 @@ namespace Core::Physics
 		void update(float dt) override;
 
 	private:
-		float m_Radius;
+		float m_Radius = 0.f;
 	};
 }

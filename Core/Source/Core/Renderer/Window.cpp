@@ -50,7 +50,7 @@ void Core::Window::line(float x1, float y1, float x2, float y2)
 
 void Core::Window::circle(float x, float y, float radius)
 {
-	m_CircleShape.setPosition(sf::Vector2f(x, y));
+	m_CircleShape.setPosition(sf::Vector2f(x-radius, y-radius));
 	m_CircleShape.setRadius(radius);
 	m_CircleShape.setFillColor(m_FillColor);
 	m_CircleShape.setOutlineColor(m_StrokeColor);

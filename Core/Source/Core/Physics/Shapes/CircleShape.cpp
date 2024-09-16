@@ -11,6 +11,8 @@ Core::Physics::CircleShape::CircleShape(Math::Vector2 position, float radius) :
 {
 	m_BodyType = ColliderType::CIRCLE;
 	m_Radius = radius;
+	m_BoundingVolume.x = radius * 2;
+	m_BoundingVolume.y = radius * 2;
 }
 
 Core::Physics::CircleShape::~CircleShape()
