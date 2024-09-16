@@ -93,6 +93,21 @@ void Game::init()
 			m_Window->fill();
 		});
 
+	m_LineShape = std::make_shared<Core::Physics::LineShape>(Core::Physics::LineShape(Core::Math::Vector2(100, 600), Core::Math::Vector2(200, 600)));
+	m_LineShape->setTrigger(true);
+	m_LineShape->setOnCollisionFunction([&](Core::Physics::Manifold data, std::shared_ptr<Core::Physics::PhysicsBody> self)
+		{
+			ImGui::Begin("Collision Data");
+			ImGui::Text("Contact %f, %f", data.contact.x, data.contact.y);
+			ImGui::Text("Penetration: %f", data.penetration);
+			ImGui::End();
+
+			m_Window->fill(255, 0, 255);
+			m_Window->circle(data.contact.x, data.contact.y, 5);
+			m_Window->fill();
+		});
+
+	m_PhysicsWorld->addBody(m_LineShape);
 	m_PhysicsWorld->addBody(m_CircleShape);
 
 	m_PhysicsRect = std::dynamic_pointer_cast<Core::Physics::RectangleShape>(m_PhysicsWorld->addBody(Core::Math::Vector2(300, 300), Core::Physics::ColliderType::RECT));
@@ -125,23 +140,23 @@ void Game::init()
 	});
 	m_PhysicsWorld->addBody(colorTrigger);
 
-	std::string test = m_Player->serialize();;
+	std::string test = m_Player->serialize();
 
 	//std::cout << test;
 
 	colorTrigger->setTag(Core::Physics::Tag(0, "colorTrigger", "trigger"));
 
-	Core::Serializer serializer;
-	serializer.addData(test);
-	serializer.addData(colorTrigger->serialize());
-	serializer.saveFile("test.bin");
+	//Core::Serializer serializer;
+	//serializer.addData(test);
+	//serializer.addData(colorTrigger->serialize());
+	//serializer.saveFile("test.bin");
 
-	std::vector<std::string> data = serializer.loadFile("test.bin");
-	for (std::string s : data)
-	{
-		std::cout << s;
-		std::cout << "test\n";
-	}
+	//std::vector<std::string> data = serializer.loadFile("test.bin");
+	//for (std::string s : data)
+	//{
+	//	std::cout << s;
+	//	std::cout << "test\n";
+	//}
 }
 
 void Game::preUpdate()
@@ -152,7 +167,7 @@ void Game::preUpdate()
 
 void Game::update(float dt)
 {
-	BaseApplication::update(dt);
+	//BaseApplication::update(dt);
 	//m_PhysicsRect->setPosition(m_MousePosition);
 	//m_Window->setView(m_MousePosition.x, m_MousePosition.y);
 	if (playerFollowsMouse)
@@ -161,8 +176,23 @@ void Game::update(float dt)
 		m_Window->setView(m_Player->getPosition().x, m_Player->getPosition().y);
 	}
 
+	m_CircleShape->setPosition(m_MousePosition);
+
+	ImGui::Begin("Line Body");
+	ImGui::SetWindowCollapsed(0);
+	if (Core::Physics::boundingBoxCollision(m_CircleShape, m_LineShape))
+		ImGui::Text("Colliding");
+	else
+		ImGui::Text("Not Colliding");
+	ImGui::Text("Start: %f, %f", m_LineShape->getStart().x, m_LineShape->getStart().y);
+	ImGui::Text("End: %f, %f", m_LineShape->getEnd().x, m_LineShape->getEnd().y);
+	ImGui::Text("Pos: %f, %f", m_LineShape->getPosition().x, m_LineShape->getPosition().y);
+	ImGui::Text("Bounding Volume: %f, %f ", m_LineShape->getBoundingVolume().x, m_LineShape->getBoundingVolume().y);
+	ImGui::End();
+
 	ImGui::Begin("Test Window");
 	ImGui::SetWindowCollapsed(0);
+	ImGui::Text("Delta Time: %f", dt);
 	ImGui::Text("Text in Window");
 	ImGui::ColorEdit3("Stroke Color", *&m_Color);
 	ImGui::Checkbox("PhysicsWireFrame", &m_PhysicsWireframe);

@@ -126,9 +126,9 @@ namespace Core::Physics
 
 		Math::Vector4 m_Color;
 
-		float m_Angle;
-		float m_AngularVelocity;
-		float m_AngularAcceleration;
+		float m_Angle = 0;
+		float m_AngularVelocity = 0;
+		float m_AngularAcceleration = 0;
 
 		float m_Mass;
 		float m_InvMass;

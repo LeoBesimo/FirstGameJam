@@ -20,6 +20,6 @@ void Player::update(float dt)
 
 void Player::render(std::shared_ptr<Core::Window> window)
 {
-	window->circle(m_Position.x - 16, m_Position.y - 16, 16);
+	window->circle(m_Position.x, m_Position.y, 16);
 }
 

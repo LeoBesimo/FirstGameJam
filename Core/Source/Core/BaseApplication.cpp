@@ -127,6 +127,13 @@ void Core::BaseApplication::renderPhysicsBodies()
 			m_Window->circle(body->getPosition().x, body->getPosition().y, radius);
 			break;
 		}
+
+		case Physics::ColliderType::LINE:
+		{
+			std::shared_ptr<Physics::LineShape> line = std::dynamic_pointer_cast<Physics::LineShape>(body);
+			m_Window->line(line->getStart().x, line->getStart().y, line->getEnd().x, line->getEnd().y);
+			break;
+		}
 		
 
 		default:
