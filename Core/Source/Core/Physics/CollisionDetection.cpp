@@ -195,19 +195,20 @@ Core::Math::Vector2 Core::Physics::getContactLineCircle(std::shared_ptr<LineShap
 	float radius = bodyB->getRadius();
 	Math::Vector2 cp;
 
-	float minDistSqr = FLT_MAX;
+	//float minDistSqr = FLT_MAX;
 
 
 	Math::Vector2 va = bodyA->getStart();
 	Math::Vector2 vb = bodyA->getEnd();
 
-	Math::Vector2 contact;
-	float distSqr = Math::distPointToLine(cCenter, va, vb, &contact);
-	if (distSqr < minDistSqr)
+	//Math::Vector2 contact;
+	//float distSqr = 
+	Math::distPointToLine(cCenter, va, vb, &cp);
+	/*if (distSqr < minDistSqr)
 	{
 		cp = contact;
 		minDistSqr = distSqr;
-	}
+	}*/
 
 	return cp;
 }
